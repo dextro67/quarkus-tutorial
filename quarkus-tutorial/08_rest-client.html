@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>REST Client :: Quarkus Tutorial</title>
+    <link rel="canonical" href="https://redhat-developer-demos.github.io/quarkus-tutorial/quarkus-tutorial/08_rest-client.html">
+    <link rel="prev" href="07_spring.html">
+    <link rel="next" href="09_fault-tolerance.html">
+    <meta name="generator" content="Antora 2.3.1">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-developer-demos.github.io/quarkus-tutorial">Quarkus Tutorial</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="quarkus-tutorial" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Requirements</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01_setup.html">Setup</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Basics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02_basics.html">Basics and Fundamentals</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03_configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04_panache.html">Hibernate with Panache</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05_kubernetes.html">Deploy to Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06_dev-services.html">Dev Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07_spring.html">Spring Compatibility</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Native</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="08_rest-client.html">REST Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09_fault-tolerance.html">Fault Tolerance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10_health.html">Health Check</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11_observability.html">Observability</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12_security.html">Security with JWT RBAC</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reactive</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14_reactive.html">Reactive with Mutiny</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15_reactive-messaging.html">Streaming reactive messages</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16_kafka-and-streams.html">Apache Kafka with Reactive Streams</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">AI</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_ai_intro.html">AI with Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_prompts.html">Working with prompts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18_chains_memory.html">Chains and Memory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19_agents_tools.html">Agents/Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20_embed_documents.html">Embedding Documents</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21_podman_ai.html">Working with Podman Desktop AI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">quarkus-tutorial</a></li>
+    <li>Cloud Native</li>
+    <li><a href="08_rest-client.html">REST Client</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/dextro67/quarkus-tutorial/edit/master/documentation/modules/ROOT/pages/08_rest-client.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">REST Client</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>A typical scenario in a Microservices architecture is the remote invocation of remote REST HTTP endpoints. Quarkus provides a typed REST client that follows the  <a href="https://github.com/eclipse/microprofile-rest-client" target="_blank" rel="noopener">MicroProfile REST Client</a> specification.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s create a REST client that accesses <a href="https://swapi.info" class="bare" target="_blank" rel="noopener">https://swapi.info</a> to get additional information about Movies. The endpoint we&#8217;re interested in is this one:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>api/films/{id}</code>, which returns specific info about the given movie.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+	"title": "A New Hope",
+	"episode_id": 4,
+	"opening_crawl": "It is a period of civil war.\r\nRebel spaceships, striking\r\nfrom a hidden base, have won\r\ntheir first victory against\r\nthe evil Galactic Empire.\r\n\r\nDuring the battle, Rebel\r\nspies managed to steal secret\r\nplans to the Empire's\r\nultimate weapon, the DEATH\r\nSTAR, an armored space\r\nstation with enough power\r\nto destroy an entire planet.\r\n\r\nPursued by the Empire's\r\nsinister agents, Princess\r\nLeia races home aboard her\r\nstarship, custodian of the\r\nstolen plans that can save her\r\npeople and restore\r\nfreedom to the galaxy....",
+	"director": "George Lucas",
+	"producer": "Gary Kurtz, Rick McCallum",
+	"release_date": "1977-05-25",
+	"characters": [
+		"https://swapi.info/api/people/1",
+		"https://swapi.info/api/people/2",
+		"https://swapi.info/api/people/3",
+		"https://swapi.info/api/people/4",
+		"https://swapi.info/api/people/5",
+		"https://swapi.info/api/people/6",
+		"https://swapi.info/api/people/7",
+		"https://swapi.info/api/people/8",
+		"https://swapi.info/api/people/9",
+		"https://swapi.info/api/people/10",
+		"https://swapi.info/api/people/12",
+		"https://swapi.info/api/people/13",
+		"https://swapi.info/api/people/14",
+		"https://swapi.info/api/people/15",
+		"https://swapi.info/api/people/16",
+		"https://swapi.info/api/people/18",
+		"https://swapi.info/api/people/19",
+		"https://swapi.info/api/people/81"
+	],
+	"planets": [
+		"https://swapi.info/api/planets/1",
+		"https://swapi.info/api/planets/2",
+		"https://swapi.info/api/planets/3"
+	],
+	"starships": [
+		"https://swapi.info/api/starships/2",
+		"https://swapi.info/api/starships/3",
+		"https://swapi.info/api/starships/5",
+		"https://swapi.info/api/starships/9",
+		"https://swapi.info/api/starships/10",
+		"https://swapi.info/api/starships/11",
+		"https://swapi.info/api/starships/12",
+		"https://swapi.info/api/starships/13"
+	],
+	"vehicles": [
+		"https://swapi.info/api/vehicles/4",
+		"https://swapi.info/api/vehicles/6",
+		"https://swapi.info/api/vehicles/7",
+		"https://swapi.info/api/vehicles/8"
+	],
+	"species": [
+		"https://swapi.info/api/species/1",
+		"https://swapi.info/api/species/2",
+		"https://swapi.info/api/species/3",
+		"https://swapi.info/api/species/4",
+		"https://swapi.info/api/species/5"
+	],
+	"created": "2014-12-10T14:23:31.880000Z",
+	"edited": "2014-12-20T19:49:45.256000Z",
+	"url": "https://swapi.info/api/films/1"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_the_rest_client_extension"><a class="anchor" href="#_add_the_rest_client_extension"></a>Add the REST Client extension</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Open a new terminal window, and make sure you’re at the root of your <code>tutorial-app</code> project, then run:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_maven"></a>Maven</p>
+</li>
+<li>
+<p><a id="tabset1_quarkus-cli"></a>Quarkus CLI</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_maven">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -D"extensions=rest-client, rest-client-jackson"</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_quarkus-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus extension add rest-client rest-client-jackson</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------&lt; com.redhat.developers:tutorial-app &gt;-----------------
+[INFO] Building tutorial-app 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- quarkus-maven-plugin:3.10.2:add-extension (default-cli) @ tutorial-app ---
+✅ Adding extension io.quarkus:quarkus-rest-client-jackson
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.773 s
+[INFO] Finished at: 2024-05-23T21:43:38-04:00
+[INFO] ------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice in the logs how Quarkus is reloading and the <code>rest-client-jackson</code> extension is now part of the <code>Installed features</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_swapi_pojo"><a class="anchor" href="#_create_swapi_pojo"></a>Create Swapi POJO</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We need to create a POJO object that is used to unmarshal a JSON message from <a href="http://swapi.dev" class="bare" target="_blank" rel="noopener">http://swapi.dev</a>.</p>
+</div>
+<div class="paragraph">
+<p>Create a new <code>Swapi</code> Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+public class Swapi {
+
+    private String title;
+    private int episode_id;
+    private String opening_crawl;
+    private String director;
+    private String producer;
+
+
+    public Swapi() {
+    }
+
+    public Swapi(String title, int episode_id, String opening_crawl, String director, String producer) {
+        this.title = title;
+        this.episode_id = episode_id;
+        this.opening_crawl = opening_crawl;
+        this.director = director;
+        this.producer = producer;
+    }
+
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getEpisode_id() {
+        return episode_id;
+    }
+
+    public void setEpisode_id(int episode_id) {
+        this.episode_id = episode_id;
+    }
+
+    public String getOpening_crawl() {
+        return opening_crawl;
+    }
+
+    public void setOpening_crawl(String opening_crawl) {
+        this.opening_crawl = opening_crawl;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public String getProducer() {
+        return producer;
+    }
+
+    public void setProducer(String producer) {
+        this.producer = producer;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_swapiservice"><a class="anchor" href="#_create_swapiservice"></a>Create SwapiService</h3>
+<div class="paragraph">
+<p>Now we&#8217;re going to implement a Java interface that mimics the remote REST endpoint.</p>
+</div>
+<div class="paragraph">
+<p>Create a new <code>SwapiService</code> Java interface in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
+
+@RegisterRestClient
+public interface SwapiService {
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/films/{id}")
+    public Swapi getFilmById(@PathParam("id") String id);
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configure_rest_client_properties"><a class="anchor" href="#_configure_rest_client_properties"></a>Configure REST Client properties</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Add the following properties to your <code>application.properties</code> in <code>src/main/resources</code>:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.rest-client."com.redhat.developers.SwapiService".url=https://swapi.info/api</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_moviedto"><a class="anchor" href="#_create_moviedto"></a>Create MovieDTO</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We&#8217;re going to enhance our <code>MovieResource</code> endpoint by creating a new <code>MovieDTO</code> POJO and add the additional information provided by the <code>SwapiService</code>.</p>
+</div>
+<div class="paragraph">
+<p>Create a new <code>MovieDTO</code> Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+import java.sql.Date;
+
+public class MovieDTO {
+
+    private String title;
+    private Date releaseDate;
+    private int episode_id;
+    private String opening_crawl;
+    private String director;
+    private String producer;
+
+    public MovieDTO() {
+    }
+
+    private MovieDTO(String title, Date releaseDate, int episode_id, String opening_crawl, String director, String producer) {
+        this.title = title;
+        this.releaseDate = releaseDate;
+        this.episode_id = episode_id;
+        this.opening_crawl = opening_crawl;
+        this.director = director;
+        this.producer = producer;
+    }
+
+    public static MovieDTO of(Movie movie, Swapi swapi) {
+        return new MovieDTO(
+                movie.title,
+                movie.releaseDate,
+                swapi.getEpisode_id(),
+                swapi.getOpening_crawl(),
+                swapi.getDirector(),
+                swapi.getProducer()
+        );
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public int getEpisode_id() {
+        return episode_id;
+    }
+
+    public void setEpisode_id(int episode_id) {
+        this.episode_id = episode_id;
+    }
+
+    public String getOpening_crawl() {
+        return opening_crawl;
+    }
+
+    public void setOpening_crawl(String opening_crawl) {
+        this.opening_crawl = opening_crawl;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public String getProducer() {
+        return producer;
+    }
+
+    public void setProducer(String producer) {
+        this.producer = producer;
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_change_movieresource_to_use_swapiservice"><a class="anchor" href="#_change_movieresource_to_use_swapiservice"></a>Change MovieResource to use SwapiService</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that we have all the required classes, we can change <code>MovieResource</code> to get movies by title and use our <code>SwapiService</code> REST client via the <code>@RestClient</code> annotation.</p>
+</div>
+<div class="paragraph">
+<p>Change the <code>MovieResource</code> Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Path("movie")
+@Produces(MediaType.APPLICATION_JSON)
+public class MovieResource {
+
+    @RestClient
+    SwapiService swapiService;
+
+    @GET
+    public List&lt;MovieDTO&gt; getMovie(@QueryParam("year") String year) {
+
+        if (year != null) {
+            return Movie.&lt;Movie&gt;findByYear(Integer.parseInt(year)).stream()
+                    .map(movie -&gt; MovieDTO.of(movie, swapiService.getFilmById(String.valueOf(movie.id))))
+                    .collect(Collectors.toList());
+        } else{
+            return Movie.&lt;Movie&gt;listAll().stream()
+                    .map(movie -&gt; MovieDTO.of(movie, swapiService.getFilmById(String.valueOf(movie.id))))
+                    .collect(Collectors.toList());
+        }
+
+    }
+
+    @Transactional
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response newMovie(Movie movie) {
+        movie.id = null;
+        movie.persist();
+        return Response.status(Response.Status.CREATED).entity(movie).build();
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_invoke_the_endpoint"><a class="anchor" href="#_invoke_the_endpoint"></a>Invoke the endpoint</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can check your new implementation using a REST client by pointing your browser to <a href="http://localhost:8080/movie?year=1980" class="bare" target="_blank" rel="noopener">http://localhost:8080/movie?year=1980</a></p>
+</div>
+<div class="paragraph">
+<p>You can also run the following command:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/movie?year=1980</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+  {
+    "title": "The Empire Strikes Back",
+    "releaseDate": "1980-05-17",
+    "episode_id": 5,
+    "opening_crawl": "It is a dark time for the\r\nRebellion. Although the Death\r\nStar has been destroyed,\r\nImperial troops have driven the\r\nRebel forces from their hidden\r\nbase and pursued them across\r\nthe galaxy.\r\n\r\nEvading the dreaded Imperial\r\nStarfleet, a group of freedom\r\nfighters led by Luke Skywalker\r\nhas established a new secret\r\nbase on the remote ice world\r\nof Hoth.\r\n\r\nThe evil lord Darth Vader,\r\nobsessed with finding young\r\nSkywalker, has dispatched\r\nthousands of remote probes into\r\nthe far reaches of space....",
+    "director": "Irvin Kershner",
+    "producer": "Gary Kurtz, Rick McCallum"
+  }
+]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="07_spring.html">Spring Compatibility</a></span>
+  <span class="next"><a href="09_fault-tolerance.html">Fault Tolerance</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

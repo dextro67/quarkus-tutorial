@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Reactive with Mutiny :: Quarkus Tutorial</title>
+    <link rel="canonical" href="https://redhat-developer-demos.github.io/quarkus-tutorial/quarkus-tutorial/14_reactive.html">
+    <link rel="prev" href="12_security.html">
+    <link rel="next" href="15_reactive-messaging.html">
+    <meta name="generator" content="Antora 2.3.1">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-developer-demos.github.io/quarkus-tutorial">Quarkus Tutorial</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="quarkus-tutorial" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Requirements</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01_setup.html">Setup</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Basics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02_basics.html">Basics and Fundamentals</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03_configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04_panache.html">Hibernate with Panache</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05_kubernetes.html">Deploy to Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06_dev-services.html">Dev Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07_spring.html">Spring Compatibility</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Native</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08_rest-client.html">REST Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09_fault-tolerance.html">Fault Tolerance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10_health.html">Health Check</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11_observability.html">Observability</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12_security.html">Security with JWT RBAC</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reactive</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="14_reactive.html">Reactive with Mutiny</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15_reactive-messaging.html">Streaming reactive messages</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16_kafka-and-streams.html">Apache Kafka with Reactive Streams</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">AI</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_ai_intro.html">AI with Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_prompts.html">Working with prompts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18_chains_memory.html">Chains and Memory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19_agents_tools.html">Agents/Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20_embed_documents.html">Embedding Documents</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21_podman_ai.html">Working with Podman Desktop AI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">quarkus-tutorial</a></li>
+    <li>Reactive</li>
+    <li><a href="14_reactive.html">Reactive with Mutiny</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/dextro67/quarkus-tutorial/edit/master/documentation/modules/ROOT/pages/14_reactive.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Reactive with Mutiny</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Quarkus provides a novel reactive API called Mutiny, with the goal of easing the development of highly scalable, resilient, and asynchronous systems.</p>
+</div>
+<div class="paragraph">
+<p>In this chapter we&#8217;re going to see some examples of how Mutiny changes the design of our Quarkus applications.
+We&#8217;re going to call an online beer database to retrieve beer information.
+This API does not return all beers at once, so we&#8217;ll need to navigate through the pages to fetch all the information.
+Then we&#8217;re going to filter all the beers with an ABV greater than 15.0 and return all these beers in a Reactive REST endpoint.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_the_mutiny_extension"><a class="anchor" href="#_add_the_mutiny_extension"></a>Add the Mutiny extension</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s create a new Quarkus project and add the Rest, Rest Client and Mutiny extensions:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_maven"></a>Maven</p>
+</li>
+<li>
+<p><a id="tabset1_quarkus-cli"></a>Quarkus CLI</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_maven">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn "io.quarkus.platform:quarkus-maven-plugin:create" -DprojectGroupId="com.redhat.developers" -DprojectArtifactId="tutorial-app" -DprojectVersion="1.0-SNAPSHOT" -Dextensions=rest,mutiny,rest-client-jsonb,rest-jsonb
+cd tutorial-app</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_quarkus-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus create app -x rest -x mutiny -x rest-client-jsonb -x rest-jsonb com.redhat.developers:tutorial-app:1.0-SNAPSHOT
+cd tutorial-app</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_start_the_app_in_dev_mode"><a class="anchor" href="#_start_the_app_in_dev_mode"></a>Start the app in Dev Mode:</h2>
+<div class="sectionbody">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset2_maven"></a>Maven</p>
+</li>
+<li>
+<p><a id="tabset2_quarkus-cli"></a>Quarkus CLI</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_maven">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:dev</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_quarkus-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus dev</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_beer_pojo"><a class="anchor" href="#_create_beer_pojo"></a>Create Beer POJO</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create a new <code>Beer</code> Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+import jakarta.json.bind.annotation.JsonbCreator;
+
+public class Beer {
+
+    private String name;
+    private String tagline;
+    private double abv;
+
+    private Beer(String name, String tagline, double abv) {
+        this.name = name;
+        this.tagline = tagline;
+        this.abv = abv;
+    }
+
+    @JsonbCreator
+    public static Beer of(String name, String tagline, double abv) {
+        return new Beer(name, tagline, abv);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getTagline() {
+        return tagline;
+    }
+
+    public double getAbv() {
+        return abv;
+    }
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_beerservice"><a class="anchor" href="#_create_beerservice"></a>Create BeerService</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now we&#8217;re going to implement a Java interface that mimics the remote REST endpoint.</p>
+</div>
+<div class="paragraph">
+<p>Create a new <code>BeerService</code> Java interface in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+import java.util.List;
+
+import jakarta.json.JsonArray;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.MediaType;
+
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
+
+import io.smallrye.mutiny.Uni;
+
+@Path("/v2")
+@RegisterRestClient
+public interface BeerService {
+
+    @GET
+    @Path("/beers")
+    @Produces(MediaType.APPLICATION_JSON)
+    Uni&lt;List&lt;Beer&gt;&gt; getBeers(@QueryParam("page") int page);
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configure_rest_client_properties"><a class="anchor" href="#_configure_rest_client_properties"></a>Configure REST Client properties</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The original punkapi.com service is not operational anymore. To reproduce the application, you can deploy the API on an Openshift Sandbox (<a href="https://developers.redhat.com/sandbox" class="bare">https://developers.redhat.com/sandbox</a>). Once you have logged in to the Sandbox, go to the <code>Developer</code> perspective in the top left corner, click on <code>+Add</code> in the left menu, and then in the <code>Git Repository</code> section click on the <code>Import from Git</code> link. Paste in the Git Repo URL field the following URL: "https://github.com/kdubois/punkapi-server.git". Openshift will detect the project as a NodeJS app. Scroll further down the form and set <code>Target port</code> to <code>3333</code>. Wait for the build to complete (this may take a few minutes) and the app to be deployed. Now click on the deployed app circle in the Topology view and copy the URL from the <code>Routes</code> section which should be visible on the right side of your screen. Then paste this URL in the application.properties below:
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Add the following properties to your <code>application.properties</code> in <code>src/main/resources</code>:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">com.redhat.developers.BeerService/mp-rest/url=REPLACE_WITH_PUNKAPI_URL_FROM_SANDBOX_HERE</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pagination_filtering"><a class="anchor" href="#_pagination_filtering"></a>Pagination + Filtering</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We want to query all the beers page by page and filter by their <em>abv</em> value.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/pagination.png" alt="pagination">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_beerresource"><a class="anchor" href="#_create_beerresource"></a>Create BeerResource</h3>
+<div class="paragraph">
+<p>Create a new <code>BeerResource</code> Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonMergePatch;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonValue;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+
+import org.eclipse.microprofile.rest.client.inject.RestClient;
+import io.smallrye.mutiny.Multi;
+import io.smallrye.mutiny.Uni;
+
+@Path("/beer")
+public class BeerResource {
+
+    @RestClient
+    BeerService beerService;
+
+    @GET
+    public Multi&lt;Beer&gt; beers() {
+        return Multi.createBy().repeating() <i class="conum" data-value="1"></i><b>(1)</b>
+            .uni(
+                () -&gt; new AtomicInteger(1),
+                i -&gt; beerService.getBeers(i.getAndIncrement()) <i class="conum" data-value="2"></i><b>(2)</b>
+            )
+            .until(List::isEmpty) <i class="conum" data-value="3"></i><b>(3)</b>
+            .onItem().&lt;Beer&gt;disjoint() <i class="conum" data-value="4"></i><b>(4)</b>
+            .select().where(b -&gt; b.getAbv() &gt; 15.0); <i class="conum" data-value="5"></i><b>(5)</b>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Creates a <code>Multi</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The supplier will start with <code>1</code> and will query the remote endpoint asking for page <code>i</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The multi will end when the beer list returned is empty.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>We dismember all the returned lists and create a sequence of beers.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>And then we filter the <code>Multi</code> with beers with <code>ABV &gt; 15.0</code>.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_invoke_the_endpoint"><a class="anchor" href="#_invoke_the_endpoint"></a>Invoke the endpoint</h3>
+<div class="paragraph">
+<p>You can check your new implementation by pointing your browser to <a href="http://localhost:8080/beer" class="bare" target="_blank" rel="noopener">http://localhost:8080/beer</a></p>
+</div>
+<div class="paragraph">
+<p>You can also run the following command:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/beer</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+  {
+    "abv": 55,
+    "name": "The End Of History",
+    "tagline": "The World's Strongest Beer."
+  },
+  {
+    "abv": 16.5,
+    "name": "Anarchist Alchemist",
+    "tagline": "Triple Hopped Triple Ipa."
+  },
+  {
+    "abv": 15.2,
+    "name": "Lumberjack Stout",
+    "tagline": "Blueberry Bacon Stout."
+  },
+  {
+    "abv": 18.3,
+    "name": "Bowman's Beard - B-Sides",
+    "tagline": "English Barley Wine."
+  },
+  {
+    "abv": 41,
+    "name": "Sink The Bismarck!",
+    "tagline": "IPA For The Dedicated."
+  },
+  {
+    "abv": 16.2,
+    "name": "Tokyo*",
+    "tagline": "Intergalactic Stout. Rich. Smoky. Fruity."
+  },
+  {
+    "abv": 18,
+    "name": "AB:02",
+    "tagline": "Triple Dry Hopped Imperial Red Ale."
+  },
+  {
+    "abv": 17.2,
+    "name": "Black Tokyo Horizon (w/Nøgne Ø &amp; Mikkeller)",
+    "tagline": "Imperial Stout Collaboration."
+  },
+  {
+    "abv": 16.1,
+    "name": "Dog D",
+    "tagline": "Anniversary Imperial Stout."
+  },
+  {
+    "abv": 32,
+    "name": "Tactical Nuclear Penguin",
+    "tagline": "Uber Imperial Stout."
+  },
+  {
+    "abv": 16.1,
+    "name": "Dog E",
+    "tagline": "Ninth Anniversary Imperial Stout."
+  },
+  {
+    "abv": 17,
+    "name": "Dog G",
+    "tagline": "11th Anniversary Imperial Stout."
+  }
+]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parallel_calls"><a class="anchor" href="#_parallel_calls"></a>Parallel Calls</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Suppose that now, you want to query two beers by its id, (so execute two requests against the remote API), and then compare their <em>abv</em> values.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/parallel.png" alt="parallel">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modify_beerservice"><a class="anchor" href="#_modify_beerservice"></a>Modify BeerService</h3>
+<div class="paragraph">
+<p>Open <code>BeerService</code> interface and add the following method to get a beer:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @GET
+    @Path("/beers/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    Uni&lt;JsonArray&gt; getBeer(@PathParam("id") int id);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modify_beerresource"><a class="anchor" href="#_modify_beerresource"></a>Modify BeerResource</h3>
+<div class="paragraph">
+<p>Open <code>BeerResource</code> class and add the following methods to do in parallel the both calls.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @GET
+    @Path("/{beerA}/{beerB}")
+    public Uni&lt;JsonValue&gt; compare(@PathParam("beerA") int beerA, @PathParam("beerB") int beerB) {
+        Uni&lt;JsonArray&gt; beer1 = beerService.getBeer(beerA);
+        Uni&lt;JsonArray&gt; beer2 = beerService.getBeer(beerB);
+
+        return Uni.combine()
+            .all()
+            .unis(beer1, beer2)
+            .with((b1, b2) -&gt; this.compare(b1, b2));
+    }
+
+    private JsonValue compare(JsonArray beerA, JsonArray beerB) {
+        JsonObject source = beerA.get(0).asJsonObject();
+        JsonObject target = beerB.get(0).asJsonObject();
+
+        String beerAName = source.getString("name");
+        String beerBName = target.getString("name");
+
+        double beerAAbv = source.getJsonNumber("abv").doubleValue();
+        double beerBAbv = target.getJsonNumber("abv").doubleValue();
+
+        return Json.createObjectBuilder()
+            .add("source-name", beerAName)
+            .add("target-name", beerBName)
+            .add("source-abv", beerAAbv)
+            .add("target-abv", beerBAbv)
+            .build();
+    }</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Executes request for first beer</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Executes request for second beer</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Waits until both requests returns a response</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Compare both beers and returns an object with the result</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_invoke_the_endpoint_2"><a class="anchor" href="#_invoke_the_endpoint_2"></a>Invoke the endpoint</h3>
+<div class="paragraph">
+<p>You can check your new implementation by pointing your browser to <a href="http://localhost:8080/beer/1/2" class="bare" target="_blank" rel="noopener">http://localhost:8080/beer/1/2</a></p>
+</div>
+<div class="paragraph">
+<p>You can also run the following command:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/beer/1/2</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"source-name":"Buzz","target-name":"Trashy Blonde","source-abv":4.5,"target-abv":4.1}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="12_security.html">Security with JWT RBAC</a></span>
+  <span class="next"><a href="15_reactive-messaging.html">Streaming reactive messages</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

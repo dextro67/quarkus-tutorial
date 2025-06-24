@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dev Services :: Quarkus Tutorial</title>
+    <link rel="canonical" href="https://redhat-developer-demos.github.io/quarkus-tutorial/quarkus-tutorial/06_dev-services.html">
+    <link rel="prev" href="05_kubernetes.html">
+    <link rel="next" href="07_spring.html">
+    <meta name="generator" content="Antora 2.3.1">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-developer-demos.github.io/quarkus-tutorial">Quarkus Tutorial</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="quarkus-tutorial" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Requirements</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01_setup.html">Setup</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Basics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02_basics.html">Basics and Fundamentals</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03_configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04_panache.html">Hibernate with Panache</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05_kubernetes.html">Deploy to Kubernetes</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="06_dev-services.html">Dev Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07_spring.html">Spring Compatibility</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Native</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08_rest-client.html">REST Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09_fault-tolerance.html">Fault Tolerance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10_health.html">Health Check</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11_observability.html">Observability</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12_security.html">Security with JWT RBAC</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reactive</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14_reactive.html">Reactive with Mutiny</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15_reactive-messaging.html">Streaming reactive messages</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16_kafka-and-streams.html">Apache Kafka with Reactive Streams</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">AI</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_ai_intro.html">AI with Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_prompts.html">Working with prompts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18_chains_memory.html">Chains and Memory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19_agents_tools.html">Agents/Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20_embed_documents.html">Embedding Documents</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21_podman_ai.html">Working with Podman Desktop AI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">quarkus-tutorial</a></li>
+    <li>Basics</li>
+    <li><a href="06_dev-services.html">Dev Services</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/dextro67/quarkus-tutorial/edit/master/documentation/modules/ROOT/pages/06_dev-services.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Dev Services</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Quarkus supports the automatic provisioning of unconfigured services in <strong>dev and test</strong> mode.
+We refer to this capability as Dev Services. From a developer&#8217;s perspective, this means that if you include an extension and don&#8217;t configure it then Quarkus will automatically start the relevant service (usually using <a href="https://www.testcontainers.org/">Testcontainers</a> behind the scenes) and wire up your application to use this service, even pre-configuring access credentials.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Dev Services will only be enabled in dev/test mode, so it will not affect the application running in production.  If you want to disable all Dev Services you can use the <code>quarkus.devservices.enabled=false</code> config property, or you can simply configure the service in which case it will result in the Dev Service being disabled automatically.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you are using a proprietary database such as IBM Db2 or Microsoft SQL Server, you will need to accept the license agreement. To do this, create a <code>src/main/resources/container-license-acceptance.txt</code> file in your project and add a line with the image name and tag of the database.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>More on zero config setup of datasources can be found <a href="https://quarkus.io/guides/datasource#dev-services">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_replace_database_extensions"><a class="anchor" href="#_replace_database_extensions"></a>Replace Database Extensions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Instead of the built-in h2 database, we&#8217;re now going to use an external database. Swapping out from one database provider to another is fairly trivial with Quarkus.
+Let&#8217;s start with updating the configuration in the <code>application.properties</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You technically don&#8217;t need to add the <code>db-kind</code> property since there is only one JDBC driver in our application. We added it for clarity&#8217;s sake.
+</td>
+</tr>
+</table>
+</div>
+<div id="quarkuspdb-update-props" class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-config hljs" data-lang="config"># Configuration file
+# key = value
+greeting=Hello y'all!
+quarkus.datasource.db-kind=postgresql
+quarkus.hibernate-orm.database.generation=drop-and-create
+quarkus.hibernate-orm.sql-load-script=import.sql</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Make sure the h2 <code>db-kind</code> and <code>jdbc.url</code> properties have been removed.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s swap the h2 extension out for the postgresql extension:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_maven"></a>Maven</p>
+</li>
+<li>
+<p><a id="tabset1_quarkus-cli"></a>Quarkus CLI</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_maven">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -Dextension=quarkus-jdbc-postgresql
+./mvnw quarkus:remove-extension -Dextension=quarkus-jdbc-h2</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_quarkus-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus extension add quarkus-jdbc-postgresql
+quarkus extension remove quarkus-jdbc-h2</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice in the logs how Quarkus has reloaded and started up a PostgreSQL database Dev Service:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">2024-05-23 17:46:51,225 INFO  [io.qua.dat.dep.dev.DevServicesDatasourceProcessor] (build-32) Dev Services for default datasource (postgresql) started - container ID is b2957fbe64ee</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verify_postgresql_container_is_running"><a class="anchor" href="#_verify_postgresql_container_is_running"></a>Verify PostgreSQL container is running</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s verify in Docker/Podman that the Dev Services container is running.  You should see 2 containers, one <code>testcontainers/ryuk</code> container which orchestrates the Dev Services, and another <code>postgres</code> container which is running the database and which is automatically wired into our Quarkus dev mode:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker ps</code></pre>
+</div>
+</div>
+<div class="imageblock text-left mt-4 center">
+<div class="content">
+<img src="_images/Dev_Services_Podman_ps.png" alt="Dev Services Container" width="800" height="100">
+</div>
+</div>
+<div class="paragraph">
+<p>Call the movie endpoint again. The data is now coming from the PostgreSQL database container.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/movie?year=1980</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+  {
+    "id": 2,
+    "title": "The Empire Strikes Back",
+    "releaseDate": "1980-05-17"
+  }
+]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_run_unit_tests_with_testcontainers"><a class="anchor" href="#_run_unit_tests_with_testcontainers"></a>Run Unit Tests with TestContainers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s stop dev mode for now to verify that the PostgreSQL container also stops when we&#8217;re done with dev mode by sending a <code>CTRL+C</code> in the terminal and checking again with <code>docker ps</code>. Notice that the PostgreSQL container has disappeared as expected.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker ps</code></pre>
+</div>
+</div>
+<div class="imageblock text-left mt-4 center">
+<div class="content">
+<img src="_images/Dev_Services_Stopped.png" alt="Dev Services Stopped" width="800" height="100">
+</div>
+</div>
+<div class="paragraph">
+<p>Run the tests:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset2_maven"></a>Maven</p>
+</li>
+<li>
+<p><a id="tabset2_quarkus-cli"></a>Quarkus CLI</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_maven">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw test</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_quarkus-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus test</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Reminder: Once the tests have run, send <code>CTRL+C</code> since Quarkus CLI starts tests in continuous mode.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice in the logs that Quarkus and TestContainers work in unison to spin up the PostgreSQL container again, run the tests, and then tear down the container again once done.</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.redhat.developers.GreetingResourceTest
+2023-07-04 17:40:04,096 INFO  [org.tes.doc.DockerClientProviderStrategy] (build-23) Found Docker environment with Environment variables, system properties and defaults. Resolved dockerHost=unix:///run/user/1000/podman/podman.sock
+2023-07-04 17:40:04,100 INFO  [org.tes.DockerClientFactory] (build-23) Docker host IP address is localhost
+2023-07-04 17:40:04,235 INFO  [org.tes.DockerClientFactory] (build-23) Connected to docker:
+  Server Version: 4.5.1
+  API Version: 1.41
+  Operating System: fedora
+  Total Memory: 31787 MB
+2023-07-04 17:40:04,254 INFO  [org.tes.uti.ImageNameSubstitutor] (build-23) Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2023-07-04 17:40:04,257 INFO  [org.tes.DockerClientFactory] (build-23) Checking the system...
+2023-07-04 17:40:04,258 INFO  [org.tes.DockerClientFactory] (build-23) ✔︎ Docker server version should be at least 1.6.0
+2023-07-04 17:40:05,038 INFO  [tc.doc.io/postgres:14] (build-23) Creating container for image: docker.io/postgres:14</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_optional_re_deploy_to_kubernetes"><a class="anchor" href="#_optional_re_deploy_to_kubernetes"></a>[Optional] Re-deploy to Kubernetes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you would like to redeploy to Kubernetes, this time you will need to provision a PostgreSQL database because as mentioned before, Dev Services are only enabled in dev/test mode.</p>
+</div>
+<div class="paragraph">
+<p>We will also need to add credentials to connect to the external database. Make sure you have the following properties set:</p>
+</div>
+<div id="quarkus-pgsql-config" class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-config hljs" data-lang="config">%prod.quarkus.datasource.password=quarkus
+%prod.quarkus.datasource.username=quarkus
+%prod.quarkus.datasource.db-kind=postgresql
+%prod.quarkus.datasource.jdbc.url=jdbc:postgresql://postgresql/quarkus
+quarkus.hibernate-orm.database.generation=drop-and-create
+quarkus.hibernate-orm.sql-load-script=import.sql</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We added a <code>%prod.</code> prefix to some of the properties.  This prefix makes it so these properties will only be evaluated with the (default) <code>prod</code> profile.  In dev mode these values will be ignored, thus triggering the Dev Services creation.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_create_a_postgresql_database"><a class="anchor" href="#_create_a_postgresql_database"></a>Create a PostgreSQL database</h3>
+<div class="paragraph">
+<p>There are several ways to deploy a PostgreSQL Database to Kubernetes.  If you&#8217;re using OpenShift, you could create one easily through the UI (Developer Perspective &gt; +Add &gt; Database &gt; PostgreSQL).  Make sure your database name, username and password match up with what you have configured in your <code>application.properties</code> or secrets.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively you can also create the following Kubernetes manifest for a simple ephemeral instance:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat &gt; postgres.yaml &lt;&lt; EOF
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresql
+spec:
+  selector:
+    matchLabels:
+      app: postgresql
+  template:
+    metadata:
+      labels:
+        app: postgresql
+    spec:
+      containers:
+        - name: postgresql
+          image: quay.io/redhatdemo/openshift-pgsql12-primary:centos7
+          imagePullPolicy: Always
+          ports:
+            - name: tcp
+              containerPort: 5432
+          env:
+            - name: PG_USER_PASSWORD
+              value: quarkus
+            - name: PG_USER_NAME
+              value: quarkus
+            - name: PG_DATABASE
+              value: quarkus
+            - name: PG_NETWORK_MASK
+              value: all
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: postgresql
+spec:
+  ports:
+    - name: pgsql
+      protocol: TCP
+      port: 5432
+      targetPort: 5432
+  type: ClusterIP
+  selector:
+    app: postgresql
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And deploy it to Kubernetes:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f postgres.yaml</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rebuild_and_deploy_your_application"><a class="anchor" href="#_rebuild_and_deploy_your_application"></a>Rebuild and deploy your application</h3>
+<div class="paragraph">
+<p>Rebuild the application and container, and push to your registry again:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset3_maven"></a>Maven</p>
+</li>
+<li>
+<p><a id="tabset3_quarkus-cli"></a>Quarkus CLI</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset3_maven">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw clean package -DskipTests -D"quarkus.container-image.push=true"</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset3_quarkus-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus image push --also-build --no-tests</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally, redeploy the application:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f target/kubernetes/kubernetes.yml</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="05_kubernetes.html">Deploy to Kubernetes</a></span>
+  <span class="next"><a href="07_spring.html">Spring Compatibility</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

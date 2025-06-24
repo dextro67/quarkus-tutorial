@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Reactive Messaging :: Quarkus Tutorial</title>
+    <link rel="canonical" href="https://redhat-developer-demos.github.io/quarkus-tutorial/quarkus-tutorial/15_reactive-messaging.html">
+    <link rel="prev" href="14_reactive.html">
+    <link rel="next" href="16_kafka-and-streams.html">
+    <meta name="generator" content="Antora 2.3.1">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-developer-demos.github.io/quarkus-tutorial">Quarkus Tutorial</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="quarkus-tutorial" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Requirements</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01_setup.html">Setup</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Basics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02_basics.html">Basics and Fundamentals</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03_configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04_panache.html">Hibernate with Panache</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05_kubernetes.html">Deploy to Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06_dev-services.html">Dev Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07_spring.html">Spring Compatibility</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Native</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08_rest-client.html">REST Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09_fault-tolerance.html">Fault Tolerance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10_health.html">Health Check</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11_observability.html">Observability</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12_security.html">Security with JWT RBAC</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reactive</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14_reactive.html">Reactive with Mutiny</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="15_reactive-messaging.html">Streaming reactive messages</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16_kafka-and-streams.html">Apache Kafka with Reactive Streams</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">AI</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_ai_intro.html">AI with Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_prompts.html">Working with prompts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18_chains_memory.html">Chains and Memory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19_agents_tools.html">Agents/Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20_embed_documents.html">Embedding Documents</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21_podman_ai.html">Working with Podman Desktop AI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">quarkus-tutorial</a></li>
+    <li>Reactive</li>
+    <li><a href="15_reactive-messaging.html">Streaming reactive messages</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/dextro67/quarkus-tutorial/edit/master/documentation/modules/ROOT/pages/15_reactive-messaging.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Reactive Messaging</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>As a Java developer you&#8217;re likely familiar with JMS, which is considered to be the standard when it comes to working with messages.
+JMS however is a blocking API, which prevents us from implementing the reactive principles.</p>
+</div>
+<div class="paragraph">
+<p>Quarkus has a "SmallRye Reactive Messaging" extension which is an implementation of the Eclipse MicroProfile Reactive Messaging specification. Reactive Messaging allows us to implement messaging in a non-blocking, reactive way.</p>
+</div>
+<div class="paragraph">
+<p>In this chapter we&#8217;re going to use SmallRye Reactive Messaging to generate beers once again. This time we&#8217;re going to add a (random) price to the beers. We&#8217;re going to be using messages instead of synchronous calls to do this.</p>
+</div>
+<div class="paragraph">
+<p>To do so, we&#8217;re going to use an in-memory channel. This means that messages are sent through the application using memory as transport channel of the messages.</p>
+</div>
+<div class="paragraph">
+<p>In the following section, we&#8217;ll see what we need to change to start using an external broker for sending messages.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_the_reactive_messaging_extension"><a class="anchor" href="#_add_the_reactive_messaging_extension"></a>Add the Reactive Messaging extension</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Open a new terminal window, and make sure you’re at the root of your <code>tutorial-app</code> project, then run:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_maven"></a>Maven</p>
+</li>
+<li>
+<p><a id="tabset1_quarkus-cli"></a>Quarkus CLI</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_maven">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -Dextension=messaging</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_quarkus-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus extension add messaging</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_modify_beerresource"><a class="anchor" href="#_modify_beerresource"></a>Modify BeerResource</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s create a new endpoint that finds a beer and sends/emits a message to a <code>beers</code> channel.</p>
+</div>
+<div class="paragraph">
+<p>Open the <code>BeerResource</code> class and add the following code.</p>
+</div>
+<div class="paragraph">
+<p>In the imports section:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import jakarta.ws.rs.core.Response;
+
+import org.eclipse.microprofile.reactive.messaging.Channel;
+import org.eclipse.microprofile.reactive.messaging.Emitter;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And the business code:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @Channel("beers")
+    Emitter&lt;JsonObject&gt; emitter;
+
+    @GET
+    @Path("/emit/{beer}")
+    public Response emitBeer(@PathParam("beer") int beerId) {
+        beerService.getBeer(beerId) <i class="conum" data-value="1"></i><b>(1)</b>
+            .map(beers -&gt; beers.get(0).asJsonObject()) <i class="conum" data-value="2"></i><b>(2)</b>
+            .subscribe().with(emitter::send); <i class="conum" data-value="3"></i><b>(3)</b>
+        return Response.ok().build(); <i class="conum" data-value="4"></i><b>(4)</b>
+    }</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Finds the beer</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Gets the first beer</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Emits the beer to <code>beers</code> channel</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Sends an ack to caller</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The previous code sends the beer as a <code>JsonObject</code> to <code>beers</code> channel.
+Since we are using an in-memory channel, let&#8217;s create a new Java class in the same project capturing the messages sent to the channel.</p>
+</div>
+<div class="paragraph">
+<p>This new class will send another event to a different channel which will be captured by yet another method.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_beerprocessor"><a class="anchor" href="#_create_beerprocessor"></a>Create BeerProcessor</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create a new <code>BeerProcessor</code> Java class in <code>src/main/java</code> in the <code>org.acme</code> package with the following contents:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+import java.util.concurrent.ThreadLocalRandom;
+
+import org.eclipse.microprofile.reactive.messaging.Incoming;
+import org.eclipse.microprofile.reactive.messaging.Outgoing;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
+import jakarta.json.bind.JsonbBuilder;
+
+
+@ApplicationScoped
+public class BeerProcessor {
+
+    @Incoming("beers") <i class="conum" data-value="1"></i><b>(1)</b>
+    @Outgoing("messages") <i class="conum" data-value="2"></i><b>(2)</b>
+    public JsonObject processPrice(JsonObject beer) { <i class="conum" data-value="3"></i><b>(3)</b>
+        JsonObjectBuilder beerWithPrice = Json.createObjectBuilder(beer).add("price", getPrice());
+        return beerWithPrice.build(); <i class="conum" data-value="4"></i><b>(4)</b>
+    }
+
+    private int getPrice() {
+        return ThreadLocalRandom.current().nextInt(1, 10);
+    }
+
+    @Incoming("messages") <i class="conum" data-value="5"></i><b>(5)</b>
+    public void print(JsonObject beer) {
+        System.out.println(JsonbBuilder.create().toJson(beer));
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Listen to events from <code>beers</code> channel</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Sends/Emits the result of the method call to the <code>messages</code> channel</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Argument is the message of the <code>beers</code> channel</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Return object is sent to the <code>messages</code> channel</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Captures <code>messages</code> event</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can use the <code>@Retry</code> annotation from the <code>fault-tolerant</code> extension to add some resiliency.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_invoke_the_endpoint"><a class="anchor" href="#_invoke_the_endpoint"></a>Invoke the endpoint</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With all these changes done and having the application running (either in DevMode or as a packaged application) invoke the service and inspect the Quarkus console for the output:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/beer/emit/1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And in the Quarkus console, you&#8217;ll see an output in JSON format of the beer with the price field added.</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"id":1,"name":"Buzz","tagline":"A Real Bitter Experience."..."contributed_by":"Sam Mason &lt;samjbmason&gt;","price":8}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="14_reactive.html">Reactive with Mutiny</a></span>
+  <span class="next"><a href="16_kafka-and-streams.html">Apache Kafka with Reactive Streams</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

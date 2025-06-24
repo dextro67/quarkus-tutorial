@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Fault Tolerance :: Quarkus Tutorial</title>
+    <link rel="canonical" href="https://redhat-developer-demos.github.io/quarkus-tutorial/quarkus-tutorial/09_fault-tolerance.html">
+    <link rel="prev" href="08_rest-client.html">
+    <link rel="next" href="10_health.html">
+    <meta name="generator" content="Antora 2.3.1">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-developer-demos.github.io/quarkus-tutorial">Quarkus Tutorial</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="quarkus-tutorial" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Requirements</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01_setup.html">Setup</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Basics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02_basics.html">Basics and Fundamentals</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03_configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04_panache.html">Hibernate with Panache</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05_kubernetes.html">Deploy to Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06_dev-services.html">Dev Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07_spring.html">Spring Compatibility</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Native</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08_rest-client.html">REST Client</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="09_fault-tolerance.html">Fault Tolerance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10_health.html">Health Check</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11_observability.html">Observability</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12_security.html">Security with JWT RBAC</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reactive</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14_reactive.html">Reactive with Mutiny</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15_reactive-messaging.html">Streaming reactive messages</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16_kafka-and-streams.html">Apache Kafka with Reactive Streams</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">AI</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_ai_intro.html">AI with Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_prompts.html">Working with prompts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18_chains_memory.html">Chains and Memory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19_agents_tools.html">Agents/Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20_embed_documents.html">Embedding Documents</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21_podman_ai.html">Working with Podman Desktop AI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">quarkus-tutorial</a></li>
+    <li>Cloud Native</li>
+    <li><a href="09_fault-tolerance.html">Fault Tolerance</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/dextro67/quarkus-tutorial/edit/master/documentation/modules/ROOT/pages/09_fault-tolerance.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Fault Tolerance</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>When trying to achieve the goal of resilience in our distributed systems, sometimes we need features like retries, fallbacks, and circuit breakers. Luckily for us, Quarkus provides these features for us through the <em>Fault Tolerance</em> extension.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_the_fault_tolerance_extension"><a class="anchor" href="#_add_the_fault_tolerance_extension"></a>Add the Fault Tolerance extension</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Open a new terminal window, and make sure you&#8217;re at the root of your <code>tutorial-app</code> project, then run:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_maven"></a>Maven</p>
+</li>
+<li>
+<p><a id="tabset1_quarkus-cli"></a>Quarkus CLI</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_maven">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -D"extensions=quarkus-smallrye-fault-tolerance"</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_quarkus-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus extension add quarkus-smallrye-fault-tolerance</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_retry_to_swapiservice"><a class="anchor" href="#_add_retry_to_swapiservice"></a>Add Retry to SwapiService</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s add a retry policy in <code>SwapiService</code>.</p>
+</div>
+<div class="paragraph">
+<p>Change the <code>SwapiService</code> Java interface in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+import java.util.List;
+
+import org.eclipse.microprofile.faulttolerance.Retry;
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
+
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.MediaType;
+
+import com.redhat.developers.Swapi.Results;
+
+@RegisterRestClient
+public interface SwapiService {
+    @GET
+    @Path("/films/")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Retry(maxRetries = 3, delay = 2000)
+    public Swapi getFilmById(@PathParam("id") String id);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now in case of any error, 3 retries are done automatically, waiting for 2 seconds between retries.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_invoke_the_endpoint_with_retry"><a class="anchor" href="#_invoke_the_endpoint_with_retry"></a>Invoke the endpoint with Retry</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Run the following command:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/movie?year=1980</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+  {
+    "title": "The Empire Strikes Back",
+    "releaseDate": "1980-05-17",
+    "episodeId": 0,
+    "producer": "Gary Kurtz, Rick McCallum",
+    "director": "Irvin Kershner",
+    "opening_crawl": "It is a dark time for the\r\nRebellion. Although the Death\r\nStar has been destroyed,\r\nImperial troops have driven the\r\nRebel forces from their hidden\r\nbase and pursued them across\r\nthe galaxy.\r\n\r\nEvading the dreaded Imperial\r\nStarfleet, a group of freedom\r\nfighters led by Luke Skywalker\r\nhas established a new secret\r\nbase on the remote ice world\r\nof Hoth.\r\n\r\nThe evil lord Darth Vader,\r\nobsessed with finding young\r\nSkywalker, has dispatched\r\nthousands of remote probes into\r\nthe far reaches of space...."
+  }
+]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>No change from calls done previously, but now change the <a href="https://swapi.dev" class="bare">https://swapi.dev</a> url in your application properties to <a href="https://swapii.dev" class="bare">https://swapii.dev</a> (or some other random url that won&#8217;t resolve).</p>
+</div>
+<div class="paragraph">
+<p>Run the following command again:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/movie?year=1980</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now after waiting 6 seconds (3 retries x 2 seconds), the next exception is thrown <code>java.net.UnknownHostException: swapii.dev</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_fallback_to_swapi_service"><a class="anchor" href="#_add_fallback_to_swapi_service"></a>Add Fallback to Swapi Service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We can handle unexpected issues with remote services more gracefully by adding a Fallback policy. Let&#8217;s add a Fallback handler to <code>SwapiService</code>.</p>
+</div>
+<div class="paragraph">
+<p>Change the <code>SwapiService</code> Java interface in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+import jakarta.ws.rs.*;
+import org.eclipse.microprofile.faulttolerance.*;
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
+import jakarta.ws.rs.core.MediaType;
+
+@RegisterRestClient
+public interface SwapiService {
+
+    @GET
+    @Path("/films/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Timeout(value = 2000L)
+    @Fallback(SwapiFallback.class)
+    public Swapi getFilmById(@PathParam("id") String id);
+
+    public static class SwapiFallback implements FallbackHandler&lt;Swapi&gt; {
+
+        private static final Swapi EMPTY_SWAPI = new Swapi("",0,"","","");
+        @Override
+        public Swapi handle(ExecutionContext context) {
+            return EMPTY_SWAPI;
+        }
+
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now in case of any error, 3 retries are done automatically, waiting for 2 seconds between retries.</p>
+</div>
+<div class="paragraph">
+<p>If the error persists, then the fallback method is executed.</p>
+</div>
+<div class="paragraph">
+<p>Now after waiting for 6 seconds (3 retries x 2 seconds), an empty object is sent instead of an exception.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_invoke_the_endpoint_with_retry_and_fallback"><a class="anchor" href="#_invoke_the_endpoint_with_retry_and_fallback"></a>Invoke the endpoint with Retry and Fallback</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Run the following command:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/movie?year=1980</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+  {
+    "title": "The Empire Strikes Back",
+    "releaseDate": "1980-05-17",
+    "episodeId": 0,
+    "producer": "",
+    "director": "",
+    "opening_crawl": ""
+  }
+]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice how we&#8217;re still returning the results from our database, but the remote service values are now empty as they are set by our fallback method.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_circuit_breaker_to_swapi_service"><a class="anchor" href="#_add_circuit_breaker_to_swapi_service"></a>Add Circuit Breaker to Swapi Service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s add the circuit breaker policy in <code>SwapiService</code>.</p>
+</div>
+<div class="paragraph">
+<p>Change the <code>SwapiService</code> Java interface in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+import jakarta.ws.rs.*;
+import org.eclipse.microprofile.faulttolerance.*;
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
+import jakarta.ws.rs.core.MediaType;
+
+@RegisterRestClient
+public interface SwapiService {
+    @GET
+    @Path("/films/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Timeout(value = 2000L)
+    @Fallback(SwapiFallback.class)
+    @CircuitBreaker(
+            requestVolumeThreshold = 4,
+            failureRatio = .5,
+            delay = 5000L,
+            successThreshold = 2
+    )
+    public Swapi getFilmById(@PathParam("id") String id);
+
+    public static class SwapiFallback implements FallbackHandler&lt;Swapi&gt; {
+
+        private static final Swapi EMPTY_SWAPI = new Swapi("",0,"","","");
+        @Override
+        public Swapi handle(ExecutionContext context) {
+            return EMPTY_SWAPI;
+        }
+
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, if 3 (4 x 0.75) failures occur among the rolling window of 4 consecutive invocations, then the circuit is opened for 5000 ms and then will be back to half open.
+If the invocation succeeds, then the circuit is back to closed again.</p>
+</div>
+<div class="paragraph">
+<p>Run the following command at least 5 times (without network connectivity):</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/movie?year=1980</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output changes from <code>java.net.UnknownHostException: swapii.dev</code> (or any other network exception) in the first calls to <code>org.eclipse.microprofile.faulttolerance.exceptions.CircuitBreakerOpenException: getMovieByTitle</code> when the circuit is opened.</p>
+</div>
+<div class="paragraph">
+<p>The big difference between the first exception and the second one is that the first one occurs because the circuit is closed while the system is trying to reach the host, while in the second one, the circuit is closed and the exception is thrown automatically without trying to reach the host.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can use <code>@Retry</code> and <code>@Fallback</code> annotations together with <code>@CircuitBreaker</code> annotation.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you turned your network off for this chapter, remember to turn it back on again after you finish the exercises for this chapter.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="08_rest-client.html">REST Client</a></span>
+  <span class="next"><a href="10_health.html">Health Check</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

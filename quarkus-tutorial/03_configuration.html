@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Configuration :: Quarkus Tutorial</title>
-    <link rel="canonical" href="https://redhat-developer-demos.github.io/quarkus-tutorial/quarkus-tutorial/configuration.html">
-    <link rel="prev" href="basics.html">
-    <link rel="next" href="panache.html">
+    <link rel="canonical" href="https://redhat-developer-demos.github.io/quarkus-tutorial/quarkus-tutorial/03_configuration.html">
+    <link rel="prev" href="02_basics.html">
+    <link rel="next" href="04_panache.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -14,7 +14,7 @@
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
       <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-developer-demos.github.io/quarkus-tutorial">Quarkus Tutorial</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
@@ -56,7 +56,7 @@
     <span class="nav-text">Requirements</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="setup.html">Setup</a>
+    <a class="nav-link" href="01_setup.html">Setup</a>
   </li>
 </ul>
   </li>
@@ -65,19 +65,22 @@
     <span class="nav-text">Basics</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="basics.html">Basics and Fundamentals</a>
+    <a class="nav-link" href="02_basics.html">Basics and Fundamentals</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="configuration.html">Configuration</a>
+    <a class="nav-link" href="03_configuration.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="panache.html">Hibernate with Panache</a>
+    <a class="nav-link" href="04_panache.html">Hibernate with Panache</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spring.html">Spring Compatibility</a>
+    <a class="nav-link" href="05_kubernetes.html">Deploy to Kubernetes</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="kubernetes.html">Deploy to Kubernetes</a>
+    <a class="nav-link" href="06_dev-services.html">Dev Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07_spring.html">Spring Compatibility</a>
   </li>
 </ul>
   </li>
@@ -86,25 +89,58 @@
     <span class="nav-text">Cloud Native</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="rest-client.html">REST Client</a>
+    <a class="nav-link" href="08_rest-client.html">REST Client</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="fault-tolerance.html">Fault Tolerance</a>
+    <a class="nav-link" href="09_fault-tolerance.html">Fault Tolerance</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="health.html">Health Check</a>
+    <a class="nav-link" href="10_health.html">Health Check</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="metrics.html">Metrics</a>
+    <a class="nav-link" href="11_observability.html">Observability</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="reactive.html">Reactive with Mutiny</a>
+    <a class="nav-link" href="12_security.html">Security with JWT RBAC</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reactive</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14_reactive.html">Reactive with Mutiny</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="kafka-and-streams.html">Apache Kafka with Reactive Streams</a>
+    <a class="nav-link" href="15_reactive-messaging.html">Streaming reactive messages</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="security.html">Security with JWT RBAC</a>
+    <a class="nav-link" href="16_kafka-and-streams.html">Apache Kafka with Reactive Streams</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">AI</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_ai_intro.html">AI with Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_prompts.html">Working with prompts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18_chains_memory.html">Chains and Memory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19_agents_tools.html">Agents/Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20_embed_documents.html">Embedding Documents</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21_podman_ai.html">Working with Podman Desktop AI</a>
   </li>
 </ul>
   </li>
@@ -124,10 +160,10 @@
   <ul>
     <li><a href="index.html">quarkus-tutorial</a></li>
     <li>Basics</li>
-    <li><a href="configuration.html">Configuration</a></li>
+    <li><a href="03_configuration.html">Configuration</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/dextro67/quarkus-tutorial/edit/master/documentation/modules/ROOT/pages/configuration.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/dextro67/quarkus-tutorial/edit/master/documentation/modules/ROOT/pages/03_configuration.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -144,21 +180,21 @@ Quarkus relies on the MicroProfile Config specification and the main configurati
 <h2 id="_using_a_config_property_in_your_code"><a class="anchor" href="#_using_a_config_property_in_your_code"></a>Using a config property in your code</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s change our <code>HelloResource</code> class to use a configuration property. Change its content to:</p>
+<p>Let&#8217;s change our <code>GreetingResource</code> class to use a configuration property. Change its content to:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+
 @Path("/hello")
-public class HelloResource {
+public class GreetingResource {
 
     @ConfigProperty(name = "greeting")
     String greeting;
@@ -176,23 +212,17 @@ public class HelloResource {
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">javax.enterprise.inject.spi.DeploymentException: No config value of type [java.lang.String] exists for: greeting
-	at io.quarkus.arc.runtime.ConfigRecorder.validateConfigProperties(ConfigRecorder.java:37)
-	at io.quarkus.deployment.steps.ConfigBuildStep$validateConfigProperties61.deploy_0(ConfigBuildStep$validateConfigProperties61.zig:120)
-	at io.quarkus.deployment.steps.ConfigBuildStep$validateConfigProperties61.deploy(ConfigBuildStep$validateConfigProperties61.zig:36)
-	at io.quarkus.runner.ApplicationImpl.doStart(ApplicationImpl.zig:166)
-	at io.quarkus.runtime.Application.start(Application.java:89)
-	at io.quarkus.runtime.ApplicationLifecycleManager.run(ApplicationLifecycleManager.java:90)
-	at io.quarkus.runtime.Quarkus.run(Quarkus.java:61)
-	at io.quarkus.runtime.Quarkus.run(Quarkus.java:38)
-	at io.quarkus.runtime.Quarkus.run(Quarkus.java:106)
-	at io.quarkus.runner.GeneratedMain.main(GeneratedMain.zig:29)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at io.quarkus.runner.bootstrap.StartupActionImpl$1.run(StartupActionImpl.java:99)
-	at java.base/java.lang.Thread.run(Thread.java:834)</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">io.quarkus.runtime.configuration.ConfigurationException: Failed to load config value of type class java.lang.String for: greeting
+	at io.quarkus.arc.runtime.ConfigRecorder.validateConfigProperties(ConfigRecorder.java:70)
+	at io.quarkus.deployment.steps.ConfigBuildStep$validateConfigValues1665125174.deploy_0(Unknown Source)
+	at io.quarkus.deployment.steps.ConfigBuildStep$validateConfigValues1665125174.deploy(Unknown Source)
+	at io.quarkus.runner.ApplicationImpl.doStart(Unknown Source)
+	at io.quarkus.runtime.Application.start(Application.java:101)
+	at io.quarkus.runtime.ApplicationLifecycleManager.run(ApplicationLifecycleManager.java:111)
+	at io.quarkus.runtime.Quarkus.run(Quarkus.java:71)
+	at io.quarkus.runtime.Quarkus.run(Quarkus.java:44)
+	at io.quarkus.runtime.Quarkus.run(Quarkus.java:124)
+	at io.quarkus.runner.GeneratedMain.main(Unknown Source)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -221,7 +251,7 @@ greeting=Hello y'all!</code></pre>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/hello</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -232,13 +262,13 @@ greeting=Hello y'all!</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_update_your_integration_test"><a class="anchor" href="#_update_your_integration_test"></a>Update your integration test</h2>
+<h2 id="_update_your_test"><a class="anchor" href="#_update_your_test"></a>Update your test</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Since we changed the output of our <code>/hello</code> endpoint, our integration test doesn&#8217;t pass anymore.</p>
+<p>Since we changed the output of our <code>/hello</code> endpoint, our test doesn&#8217;t pass anymore.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s update <code>FruitResourceTest</code> to reflect our recent changes:</p>
+<p>Let&#8217;s update <code>GreetingResourceTest</code> to reflect our recent changes:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -251,7 +281,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
-public class HelloResourceTest {
+public class GreetingResourceTest {
 
     @Test
     public void testHelloEndpoint() {
@@ -265,8 +295,20 @@ public class HelloResourceTest {
 }</code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you&#8217;re still running in continuous testing mode, you will already see that the tests pass again and you can ignore the rest of this page and move on to the next step.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Stop your current Live Coding session of Quarkus in the terminal by sending a <code>CTRL+C</code>:</p>
+<p>Stop your current Live Coding session of Quarkus in the terminal by sending a <code>Ctrl+C</code>:</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
@@ -276,9 +318,32 @@ public class HelloResourceTest {
 <div class="paragraph">
 <p>Now run your tests to check if everything is ok:</p>
 </div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_maven"></a>Maven</p>
+</li>
+<li>
+<p><a id="tabset1_quarkus-cli"></a>Quarkus CLI</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_maven">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw clean test</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_quarkus-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus test</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -298,16 +363,39 @@ public class HelloResourceTest {
 <div class="paragraph">
 <p><code>BUILD SUCCESS</code>! You can now go back to the amazing <em>Live Coding</em> mode of Quarkus:</p>
 </div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset2_maven"></a>Maven</p>
+</li>
+<li>
+<p><a id="tabset2_quarkus-cli"></a>Quarkus CLI</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_maven">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:dev</code></pre>
 </div>
 </div>
 </div>
+<div class="tab-pane" aria-labelledby="tabset2_quarkus-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus dev</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="basics.html">Basics and Fundamentals</a></span>
-  <span class="next"><a href="panache.html">Hibernate with Panache</a></span>
+  <span class="prev"><a href="02_basics.html">Basics and Fundamentals</a></span>
+  <span class="next"><a href="04_panache.html">Hibernate with Panache</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

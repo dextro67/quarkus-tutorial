@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Security with JWT RBAC :: Quarkus Tutorial</title>
-    <link rel="canonical" href="https://redhat-developer-demos.github.io/quarkus-tutorial/quarkus-tutorial/security.html">
-    <link rel="prev" href="kafka-and-streams.html">
+    <link rel="canonical" href="https://redhat-developer-demos.github.io/quarkus-tutorial/quarkus-tutorial/12_security.html">
+    <link rel="prev" href="11_observability.html">
+    <link rel="next" href="14_reactive.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -13,7 +14,7 @@
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
       <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-developer-demos.github.io/quarkus-tutorial">Quarkus Tutorial</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
@@ -55,7 +56,7 @@
     <span class="nav-text">Requirements</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="setup.html">Setup</a>
+    <a class="nav-link" href="01_setup.html">Setup</a>
   </li>
 </ul>
   </li>
@@ -64,19 +65,22 @@
     <span class="nav-text">Basics</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="basics.html">Basics and Fundamentals</a>
+    <a class="nav-link" href="02_basics.html">Basics and Fundamentals</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="configuration.html">Configuration</a>
+    <a class="nav-link" href="03_configuration.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="panache.html">Hibernate with Panache</a>
+    <a class="nav-link" href="04_panache.html">Hibernate with Panache</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spring.html">Spring Compatibility</a>
+    <a class="nav-link" href="05_kubernetes.html">Deploy to Kubernetes</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="kubernetes.html">Deploy to Kubernetes</a>
+    <a class="nav-link" href="06_dev-services.html">Dev Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07_spring.html">Spring Compatibility</a>
   </li>
 </ul>
   </li>
@@ -85,25 +89,58 @@
     <span class="nav-text">Cloud Native</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="rest-client.html">REST Client</a>
+    <a class="nav-link" href="08_rest-client.html">REST Client</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="fault-tolerance.html">Fault Tolerance</a>
+    <a class="nav-link" href="09_fault-tolerance.html">Fault Tolerance</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="health.html">Health Check</a>
+    <a class="nav-link" href="10_health.html">Health Check</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="metrics.html">Metrics</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="reactive.html">Reactive with Mutiny</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="kafka-and-streams.html">Apache Kafka with Reactive Streams</a>
+    <a class="nav-link" href="11_observability.html">Observability</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="security.html">Security with JWT RBAC</a>
+    <a class="nav-link" href="12_security.html">Security with JWT RBAC</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reactive</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14_reactive.html">Reactive with Mutiny</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15_reactive-messaging.html">Streaming reactive messages</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16_kafka-and-streams.html">Apache Kafka with Reactive Streams</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">AI</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_ai_intro.html">AI with Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_prompts.html">Working with prompts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18_chains_memory.html">Chains and Memory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19_agents_tools.html">Agents/Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20_embed_documents.html">Embedding Documents</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21_podman_ai.html">Working with Podman Desktop AI</a>
   </li>
 </ul>
   </li>
@@ -123,10 +160,10 @@
   <ul>
     <li><a href="index.html">quarkus-tutorial</a></li>
     <li>Cloud Native</li>
-    <li><a href="security.html">Security with JWT RBAC</a></li>
+    <li><a href="12_security.html">Security with JWT RBAC</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/dextro67/quarkus-tutorial/edit/master/documentation/modules/ROOT/pages/security.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/dextro67/quarkus-tutorial/edit/master/documentation/modules/ROOT/pages/12_security.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -135,8 +172,8 @@
 <h2 id="_securing_endpoints_with_jwt_rbac"><a class="anchor" href="#_securing_endpoints_with_jwt_rbac"></a>Securing endpoints with JWT RBAC</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In a microservices architecture, and generally speaking, any kind of application, might need to be protected so only certain users can access to the defined endpoint.
-Quarkus provides an integration to the <a href="https://github.com/eclipse/microprofile-jwt-auth" target="_blank" rel="noopener">MicroProfile JWT RBAC</a> spec.</p>
+<p>In a microservices architecture, and generally speaking, any application, might need to be protected so only specific users can access the defined endpoint.
+Quarkus provides integration to the <a href="https://github.com/eclipse/microprofile-jwt-auth" target="_blank" rel="noopener">MicroProfile JWT RBAC</a> specification.</p>
 </div>
 <div class="paragraph">
 <p>So let&#8217;s see how you can start using JWT for <em>Role Based Access Control</em> (RBAC) of endpoints.</p>
@@ -149,9 +186,32 @@ Quarkus provides an integration to the <a href="https://github.com/eclipse/micro
 <div class="paragraph">
 <p>Just open a new terminal window, and make sure you’re at the root of your <code>tutorial-app</code> project, then run:</p>
 </div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_maven"></a>Maven</p>
+</li>
+<li>
+<p><a id="tabset1_quarkus-cli"></a>Quarkus CLI</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_maven">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -Dextension=quarkus-smallrye-jwt</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -D"extension=quarkus-smallrye-jwt"</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_quarkus-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus extension add quarkus-smallrye-jwt</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -165,7 +225,10 @@ Quarkus provides an integration to the <a href="https://github.com/eclipse/micro
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">mp.jwt.verify.publickey.location=https://raw.githubusercontent.com/redhat-developer-demos/quarkus-tutorial/master/jwt-token/quarkus.jwt.pub
-mp.jwt.verify.issuer=https://quarkus.io/using-jwt-rbac</code></pre>
+mp.jwt.verify.issuer=https://quarkus.io/using-jwt-rbac
+
+#set jwt expiration duration
+#com.developers.redhat.jwt.duration=3600</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -223,26 +286,29 @@ mp.jwt.verify.issuer=https://quarkus.io/using-jwt-rbac</code></pre>
 <p>You can inject any defined claim into an object by using <code>@Claim</code> annotation:</p>
 </div>
 <div class="paragraph">
-<p>Change the <code>SecureResource</code> Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+<p>Create the <code>SecureResource</code> Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+
+import jakarta.enterprise.context.RequestScoped;
 
 import org.eclipse.microprofile.jwt.Claim;
 import org.eclipse.microprofile.jwt.Claims;
 
-@Path("/secure")
+@Path("secure")
+@RequestScoped
 public class SecureResource {
 
     @Claim(standard = Claims.preferred_username)
     String username;
 
     @GET
-    @Path("/claim")
+    @Path("claim")
     public String getClaim() {
         return username;
     }
@@ -256,16 +322,16 @@ public class SecureResource {
 <h2 id="_invoke_the_secureclaim_endpoint"><a class="anchor" href="#_invoke_the_secureclaim_endpoint"></a>Invoke the /secure/claim endpoint</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Run the following command:</p>
+<p>Run the following command in a bash shell:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">token=$(curl https://raw.githubusercontent.com/redhat-developer-demos/quarkus-tutorial/master/jwt-token/quarkus.jwt.token -s)
-curl -H "Authorization: Bearer $token" localhost:8080/secure/claim</code></pre>
+curl -w '\n' -H "Authorization: Bearer $token" localhost:8080/secure/claim</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>And you’ll see the preferred_username field for the given token (jdoe).</p>
+<p>You should see the <code>preferred_username</code> field for the given token (jdoe).</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
@@ -273,15 +339,15 @@ curl -H "Authorization: Bearer $token" localhost:8080/secure/claim</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>MicroProfile JWT RBAC spec is providing out-of-the-box the validation of the given token. These validations include for example that the token has not been modified, has not expired or the issuer is the expected one.</p>
+<p>MicroProfile JWT RBAC spec is providing out-of-the-box validation of the given token. These validations include, for example, that the token has not been modified, has not expired, or the issuer is the expected one.</p>
 </div>
 <div class="paragraph">
-<p>To validate this just invoke again the service but changing the token:</p>
+<p>To validate this, just invoke the service again, but change the token:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">token=XXXX
-curl -v -H "Authorization: Bearer $token" localhost:8080/secure/claim</code></pre>
+curl -v -w '\n' -H "Authorization: Bearer $token" localhost:8080/secure/claim</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -312,8 +378,8 @@ curl -v -H "Authorization: Bearer $token" localhost:8080/secure/claim</code></pr
 <h2 id="_add_rbac_to_secureresource"><a class="anchor" href="#_add_rbac_to_secureresource"></a>Add RBAC to SecureResource</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>So far, you&#8217;ve seen how to get claims from the provided JWT token, but anyone could access that endpoint, let&#8217;s protected it with a role.
-For this case you need to use a role that is defined in JWT token into <code>groups</code> claim (ie <code>Subscriber</code>).</p>
+<p>So far, you&#8217;ve seen how to get claims from the provided JWT token, but anyone could access that endpoint, so let&#8217;s protect it with a role.
+For this case, you need to use a role that is defined in the JWT token inside the <code>groups</code> claim (ie <code>Subscriber</code>).</p>
 </div>
 <div class="paragraph">
 <p>Change the <code>SecureResource</code> Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
@@ -322,14 +388,17 @@ For this case you need to use a role that is defined in JWT token into <code>gro
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
 
-import javax.annotation.security.RolesAllowed;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+
+import jakarta.enterprise.context.RequestScoped;
 
 import org.eclipse.microprofile.jwt.Claim;
 import org.eclipse.microprofile.jwt.Claims;
 
 @Path("/secure")
+@RequestScoped
 public class SecureResource {
 
     @Claim(standard = Claims.preferred_username)
@@ -356,11 +425,11 @@ public class SecureResource {
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">token=$(curl https://raw.githubusercontent.com/redhat-developer-demos/quarkus-tutorial/master/jwt-token/quarkus.jwt.token -s)
-curl -H "Authorization: Bearer $token" localhost:8080/secure/claim</code></pre>
+curl -w '\n' -H "Authorization: Bearer $token" localhost:8080/secure/claim</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>And you’ll see the preferred_username field for the given token (jdoe).</p>
+<p>And you’ll see the <code>preferred_username</code> field for the given token (jdoe).</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
@@ -376,14 +445,17 @@ curl -H "Authorization: Bearer $token" localhost:8080/secure/claim</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
 
-import javax.annotation.security.RolesAllowed;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+
+import jakarta.enterprise.context.RequestScoped;
 
 import org.eclipse.microprofile.jwt.Claim;
 import org.eclipse.microprofile.jwt.Claims;
 
 @Path("/secure")
+@RequestScoped
 public class SecureResource {
 
     @Claim(standard = Claims.preferred_username)
@@ -402,7 +474,7 @@ public class SecureResource {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_invoke_the_secureclaim_endpoint_with_incorret_rbac"><a class="anchor" href="#_invoke_the_secureclaim_endpoint_with_incorret_rbac"></a>Invoke the /secure/claim endpoint with incorret RBAC</h2>
+<h2 id="_invoke_the_secureclaim_endpoint_with_incorrect_rbac"><a class="anchor" href="#_invoke_the_secureclaim_endpoint_with_incorrect_rbac"></a>Invoke the /secure/claim endpoint with incorrect RBAC</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Run the following command:</p>
@@ -410,7 +482,7 @@ public class SecureResource {
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">token=$(curl https://raw.githubusercontent.com/redhat-developer-demos/quarkus-tutorial/master/jwt-token/quarkus.jwt.token -s)
-curl -v -H "Authorization: Bearer $token" localhost:8080/secure/claim</code></pre>
+curl -v -w '\n' -H "Authorization: Bearer $token" localhost:8080/secure/claim</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -436,12 +508,13 @@ Forbidden* Closing connection 0</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can check the <code>403 Forbidden</code> response.</p>
+<p>You can notice the <code>403 Forbidden</code> response.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="kafka-and-streams.html">Apache Kafka with Reactive Streams</a></span>
+  <span class="prev"><a href="11_observability.html">Observability</a></span>
+  <span class="next"><a href="14_reactive.html">Reactive with Mutiny</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

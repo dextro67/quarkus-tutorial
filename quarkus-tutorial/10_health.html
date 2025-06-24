@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Health Check :: Quarkus Tutorial</title>
-    <link rel="canonical" href="https://redhat-developer-demos.github.io/quarkus-tutorial/quarkus-tutorial/health.html">
-    <link rel="prev" href="fault-tolerance.html">
-    <link rel="next" href="metrics.html">
+    <link rel="canonical" href="https://redhat-developer-demos.github.io/quarkus-tutorial/quarkus-tutorial/10_health.html">
+    <link rel="prev" href="09_fault-tolerance.html">
+    <link rel="next" href="11_observability.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -14,7 +14,7 @@
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
       <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-developer-demos.github.io/quarkus-tutorial">Quarkus Tutorial</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
@@ -56,7 +56,7 @@
     <span class="nav-text">Requirements</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="setup.html">Setup</a>
+    <a class="nav-link" href="01_setup.html">Setup</a>
   </li>
 </ul>
   </li>
@@ -65,19 +65,22 @@
     <span class="nav-text">Basics</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="basics.html">Basics and Fundamentals</a>
+    <a class="nav-link" href="02_basics.html">Basics and Fundamentals</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="configuration.html">Configuration</a>
+    <a class="nav-link" href="03_configuration.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="panache.html">Hibernate with Panache</a>
+    <a class="nav-link" href="04_panache.html">Hibernate with Panache</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spring.html">Spring Compatibility</a>
+    <a class="nav-link" href="05_kubernetes.html">Deploy to Kubernetes</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="kubernetes.html">Deploy to Kubernetes</a>
+    <a class="nav-link" href="06_dev-services.html">Dev Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07_spring.html">Spring Compatibility</a>
   </li>
 </ul>
   </li>
@@ -86,25 +89,58 @@
     <span class="nav-text">Cloud Native</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="rest-client.html">REST Client</a>
+    <a class="nav-link" href="08_rest-client.html">REST Client</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="fault-tolerance.html">Fault Tolerance</a>
+    <a class="nav-link" href="09_fault-tolerance.html">Fault Tolerance</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="health.html">Health Check</a>
+    <a class="nav-link" href="10_health.html">Health Check</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="metrics.html">Metrics</a>
+    <a class="nav-link" href="11_observability.html">Observability</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="reactive.html">Reactive with Mutiny</a>
+    <a class="nav-link" href="12_security.html">Security with JWT RBAC</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reactive</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14_reactive.html">Reactive with Mutiny</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="kafka-and-streams.html">Apache Kafka with Reactive Streams</a>
+    <a class="nav-link" href="15_reactive-messaging.html">Streaming reactive messages</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="security.html">Security with JWT RBAC</a>
+    <a class="nav-link" href="16_kafka-and-streams.html">Apache Kafka with Reactive Streams</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">AI</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_ai_intro.html">AI with Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_prompts.html">Working with prompts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18_chains_memory.html">Chains and Memory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19_agents_tools.html">Agents/Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20_embed_documents.html">Embedding Documents</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21_podman_ai.html">Working with Podman Desktop AI</a>
   </li>
 </ul>
   </li>
@@ -124,10 +160,10 @@
   <ul>
     <li><a href="index.html">quarkus-tutorial</a></li>
     <li>Cloud Native</li>
-    <li><a href="health.html">Health Check</a></li>
+    <li><a href="10_health.html">Health Check</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/dextro67/quarkus-tutorial/edit/master/documentation/modules/ROOT/pages/health.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/dextro67/quarkus-tutorial/edit/master/documentation/modules/ROOT/pages/10_health.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -143,10 +179,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Liveness probes</strong> tells your platform if your application is running ok or not. When your liveness probe is down, your platform might restart your instance to guarantee that you have the minimum required amount of running instances in production.</p>
+<p><strong>Liveness probes</strong> tell your platform if your application is running ok or not. When your liveness probe is down, your platform might restart your instance to guarantee that you have the minimum required amount of running instances in production.</p>
 </li>
 <li>
-<p><strong>Readiness probes</strong> tells your platform if your application is <em>warm</em> enough to reply to requests in a reasonable amount of time. Java applications, for example, might need some time to warm up, so the readiness probe should be up only when it&#8217;s ready to reply to request in a timely manner. Checks that depends on other services should be implemented as readiness probes: if a remote service is down, restarting your application won&#8217;t fix the issue.</p>
+<p><strong>Readiness probes</strong> tell your platform if your application is <em>warm</em> enough to reply to requests in a reasonable amount of time. Java applications, for example, might need some time to warm up, so the readiness probe should be up only when it&#8217;s ready to reply to a request in a timely manner. Checks that depend on other services should be implemented as readiness probes: if a remote service is down, restarting your application won&#8217;t fix the issue.</p>
 </li>
 </ul>
 </div>
@@ -156,11 +192,34 @@
 <h2 id="_add_the_health_extension"><a class="anchor" href="#_add_the_health_extension"></a>Add the Health extension</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Just open a new terminal window, and make sure you’re at the root of your <code>tutorial-app</code> project, then run:</p>
+<p>Open a new terminal window, and make sure you&#8217;re at the root of your <code>tutorial-app</code> project, then run:</p>
 </div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_maven"></a>Maven</p>
+</li>
+<li>
+<p><a id="tabset1_quarkus-cli"></a>Quarkus CLI</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_maven">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -Dextension=quarkus-smallrye-health</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -D"extension=quarkus-smallrye-health"</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_quarkus-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus extension add quarkus-smallrye-health</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -169,14 +228,14 @@
 <h2 id="_invoke_the_health_endpoint"><a class="anchor" href="#_invoke_the_health_endpoint"></a>Invoke the /health endpoint</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Just by adding the Health extension you&#8217;ll have a <code>/health</code> endpoint providing a very trivial health check.</p>
+<p>Just by adding the Health extension you&#8217;ll have a <code>/q/health</code> endpoint providing a very trivial health check.</p>
 </div>
 <div class="paragraph">
 <p>Run the following command:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/health</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/q/health</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -194,6 +253,23 @@
 </div>
 <div class="paragraph">
 <p>Notice that since we&#8217;re using the Hibernate and database extensions, Quarkus automatically added a readiness probe checking the status of our database connections.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can modify the default path by adding the following property in <code>applications.properties</code> :
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.smallrye-health.root-path=/health</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -227,26 +303,41 @@ public class LivenessProbe implements HealthCheck {
 <h2 id="_add_a_custom_readiness_probe"><a class="anchor" href="#_add_a_custom_readiness_probe"></a>Add a custom readiness probe</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Create a new <code>ReadinessProbe</code> Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+<p>In dev mode, all your health checks are visible in the Health UI: <a href="http://localhost:8080/q/health-ui/" class="bare">http://localhost:8080/q/health-ui/</a>.</p>
+</div>
+<div class="paragraph">
+<p>Some extensions may provide default health checks, including that the extension will automatically register its health checks.
+For example, quarkus-agroal (which is used to manage Quarkus datasources) automatically registers a readiness health check that will validate each datasource.</p>
+</div>
+<div class="paragraph">
+<p>Since the readiness of the database is already assessed just by adding those extensions, we should look into defining health checks for other dependencies that we have.
+As we depend on the availability of <a href="https://swapi.dev" class="bare">https://swapi.dev</a>, let&#8217;s create a new <code>ReadinessProbe</code> to assess its availability prior to using it.</p>
+</div>
+<div class="paragraph">
+<p>We will define a new Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
 
+import io.smallrye.health.checks.UrlHealthCheck;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.health.HealthCheck;
-import org.eclipse.microprofile.health.HealthCheckResponse;
 import org.eclipse.microprofile.health.Readiness;
 
-@Readiness
-public class ReadinessProbe implements HealthCheck{
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ws.rs.HttpMethod;
 
-    @Override
-    public HealthCheckResponse call() {
-        return HealthCheckResponse.builder()
-            .name("database")
-            .withData("connections", "10") <i class="conum" data-value="1"></i><b>(1)</b>
-            .up()
-            .build();
+@ApplicationScoped
+public class CustomHealthCheck {
+
+    @ConfigProperty(name = "quarkus.rest-client.\"com.redhat.developers.SwapiService\".url")
+    String externalURL;
+
+    @Readiness <i class="conum" data-value="1"></i><b>(1)</b>
+    HealthCheck checkURL() {
+        return new UrlHealthCheck(externalURL+"/api/films/") <i class="conum" data-value="2"></i><b>(2)</b>
+                .name("ExternalURL health check").requestMethod(HttpMethod.GET).statusCode(200);
     }
 
 }</code></pre>
@@ -256,7 +347,11 @@ public class ReadinessProbe implements HealthCheck{
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>You can use a <code>HealthCheckResponse</code> builder to add custom information to your health checks.</td>
+<td>Annotate the method with <code>org.eclipse.microprofile.health.Readiness</code> to signal its implementation.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>UrlHealthCheck</code> checks if host is reachable using a Http URL connection.</td>
 </tr>
 </table>
 </div>
@@ -270,7 +365,7 @@ public class ReadinessProbe implements HealthCheck{
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/health</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/health</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -283,10 +378,10 @@ public class ReadinessProbe implements HealthCheck{
             "status": "UP"
         },
         {
-            "name": "database",
+            "name": "ExternalURL health check",
             "status": "UP",
             "data": {
-                "connections": "10"
+                "host": "GET https://swapi.dev/api/films"
             }
         },
         {
@@ -310,7 +405,7 @@ public class ReadinessProbe implements HealthCheck{
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/health/live</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/health/live</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -327,7 +422,7 @@ public class ReadinessProbe implements HealthCheck{
 </div>
 </div>
 <div class="paragraph">
-<p>You can see that the liveness endpoints only returns information about the liveness probes.</p>
+<p>You can see that the liveness endpoint only returns information about the liveness probes.</p>
 </div>
 </div>
 </div>
@@ -339,7 +434,7 @@ public class ReadinessProbe implements HealthCheck{
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/health/ready</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/health/ready</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -348,10 +443,10 @@ public class ReadinessProbe implements HealthCheck{
     "status": "UP",
     "checks": [
         {
-            "name": "database",
+            "name": "ExternalURL health check",
             "status": "UP",
             "data": {
-                "connections": "10"
+                "host": "GET https://swapi.dev/api/films"
             }
         },
         {
@@ -363,7 +458,7 @@ public class ReadinessProbe implements HealthCheck{
 </div>
 </div>
 <div class="paragraph">
-<p>You can see that the readiness endpoints only returns information about the readiness probes.</p>
+<p>You can see that the readiness endpoint only returns information about the readiness probes.</p>
 </div>
 </div>
 </div>
@@ -377,7 +472,7 @@ public class ReadinessProbe implements HealthCheck{
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you&#8217;re using the Quarkus Kubernetes extension, the liveness and readiness probes are automatically configured in your <code>Deployment</code> when you generate the Kubernetes yaml files.
+If you&#8217;re using the Quarkus Kubernetes extension, the liveness and readiness probes are automatically configured in your <code>Deployment</code> when you generate the Kubernetes YAML files.
 </td>
 </tr>
 </table>
@@ -385,8 +480,8 @@ If you&#8217;re using the Quarkus Kubernetes extension, the liveness and readine
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="fault-tolerance.html">Fault Tolerance</a></span>
-  <span class="next"><a href="metrics.html">Metrics</a></span>
+  <span class="prev"><a href="09_fault-tolerance.html">Fault Tolerance</a></span>
+  <span class="next"><a href="11_observability.html">Observability</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

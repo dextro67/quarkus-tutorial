@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Spring Compatibility :: Quarkus Tutorial</title>
-    <link rel="canonical" href="https://redhat-developer-demos.github.io/quarkus-tutorial/quarkus-tutorial/spring.html">
-    <link rel="prev" href="panache.html">
-    <link rel="next" href="kubernetes.html">
+    <link rel="canonical" href="https://redhat-developer-demos.github.io/quarkus-tutorial/quarkus-tutorial/07_spring.html">
+    <link rel="prev" href="06_dev-services.html">
+    <link rel="next" href="08_rest-client.html">
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -14,7 +14,7 @@
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
       <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-developer-demos.github.io/quarkus-tutorial">Quarkus Tutorial</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
@@ -56,7 +56,7 @@
     <span class="nav-text">Requirements</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="setup.html">Setup</a>
+    <a class="nav-link" href="01_setup.html">Setup</a>
   </li>
 </ul>
   </li>
@@ -65,19 +65,22 @@
     <span class="nav-text">Basics</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="basics.html">Basics and Fundamentals</a>
+    <a class="nav-link" href="02_basics.html">Basics and Fundamentals</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="configuration.html">Configuration</a>
+    <a class="nav-link" href="03_configuration.html">Configuration</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="panache.html">Hibernate with Panache</a>
+    <a class="nav-link" href="04_panache.html">Hibernate with Panache</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05_kubernetes.html">Deploy to Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06_dev-services.html">Dev Services</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="spring.html">Spring Compatibility</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="kubernetes.html">Deploy to Kubernetes</a>
+    <a class="nav-link" href="07_spring.html">Spring Compatibility</a>
   </li>
 </ul>
   </li>
@@ -86,25 +89,58 @@
     <span class="nav-text">Cloud Native</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="rest-client.html">REST Client</a>
+    <a class="nav-link" href="08_rest-client.html">REST Client</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="fault-tolerance.html">Fault Tolerance</a>
+    <a class="nav-link" href="09_fault-tolerance.html">Fault Tolerance</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="health.html">Health Check</a>
+    <a class="nav-link" href="10_health.html">Health Check</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="metrics.html">Metrics</a>
+    <a class="nav-link" href="11_observability.html">Observability</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="reactive.html">Reactive with Mutiny</a>
+    <a class="nav-link" href="12_security.html">Security with JWT RBAC</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reactive</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14_reactive.html">Reactive with Mutiny</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="kafka-and-streams.html">Apache Kafka with Reactive Streams</a>
+    <a class="nav-link" href="15_reactive-messaging.html">Streaming reactive messages</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="security.html">Security with JWT RBAC</a>
+    <a class="nav-link" href="16_kafka-and-streams.html">Apache Kafka with Reactive Streams</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">AI</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_ai_intro.html">AI with Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_prompts.html">Working with prompts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18_chains_memory.html">Chains and Memory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19_agents_tools.html">Agents/Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20_embed_documents.html">Embedding Documents</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21_podman_ai.html">Working with Podman Desktop AI</a>
   </li>
 </ul>
   </li>
@@ -124,10 +160,10 @@
   <ul>
     <li><a href="index.html">quarkus-tutorial</a></li>
     <li>Basics</li>
-    <li><a href="spring.html">Spring Compatibility</a></li>
+    <li><a href="07_spring.html">Spring Compatibility</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/dextro67/quarkus-tutorial/edit/master/documentation/modules/ROOT/pages/spring.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/dextro67/quarkus-tutorial/edit/master/documentation/modules/ROOT/pages/07_spring.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -145,9 +181,32 @@
 <div class="paragraph">
 <p>Quarkus supports many of your favorite Spring Framework projects. In this chapter, we&#8217;re going to use the Spring DI, Spring Web, and Spring Data APIs. Let&#8217;s add the required extensions:</p>
 </div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_maven"></a>Maven</p>
+</li>
+<li>
+<p><a id="tabset1_quarkus-cli"></a>Quarkus CLI</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_maven">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -Dextensions=quarkus-spring-web,quarkus-spring-data-jpa</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -D"extensions=spring-web,spring-data-jpa"</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_quarkus-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus ext add spring-web spring-data-jpa</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -158,24 +217,27 @@
 [INFO] Building tutorial-app 1.0-SNAPSHOT
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO]
-[INFO] --- quarkus-maven-plugin:1.4.2.Final:add-extension (default-cli) @ tutorial-app ---
+[INFO] --- quarkus-maven-plugin:3.10.2:add-extension (default-cli) @ tutorial-app ---
 ✅ Adding extension io.quarkus:quarkus-spring-data-jpa
 ✅ Adding extension io.quarkus:quarkus-spring-web
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  2.052 s
-[INFO] Finished at: 2020-05-11T21:33:15-04:00
+[INFO] Finished at: 2024-05-23T21:33:15-04:00
 [INFO] ------------------------------------------------------------------------</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Notice in the logs how Quarkus is reloading and the Spring compatibility extensions are now part of the <code>Installed features</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_a_spring_data_repository_for_fruit"><a class="anchor" href="#_create_a_spring_data_repository_for_fruit"></a>Create a Spring Data Repository for Fruit</h2>
+<h2 id="_create_a_spring_data_repository_for_movie"><a class="anchor" href="#_create_a_spring_data_repository_for_movie"></a>Create a Spring Data Repository for Movie</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Spring Data is one of the most popular Spring APIs, so let&#8217;s create a Spring Data JPA Repository for our <code>Fruit</code> entity. Create the <code>SpringFruitRepository</code> Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+<p>Spring Data is one of the most popular Spring APIs, so let&#8217;s create a Spring Data JPA Repository for our <code>Movie</code> entity. Create the <code>SpringMovieRepository</code> Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -187,9 +249,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SpringFruitRepository extends JpaRepository&lt;Fruit, Long&gt; {
+public interface SpringMovieRepository extends JpaRepository&lt;Movie, Long&gt; {
 
-    public List&lt;Fruit&gt; findBySeason(String season);
+    public List&lt;Movie&gt; findByYear(String year);
 
 }</code></pre>
 </div>
@@ -200,7 +262,7 @@ public interface SpringFruitRepository extends JpaRepository&lt;Fruit, Long&gt; 
 <h2 id="_create_a_spring_rest_controller"><a class="anchor" href="#_create_a_spring_rest_controller"></a>Create a Spring REST Controller</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Now let&#8217;s create another REST endpoing for <code>Fruit</code>, but now using the Spring Web APIs. Create the <code>FruitController</code> Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+<p>Now let&#8217;s create another REST endpoint for <code>Movie</code>, but now using the Spring Web APIs. Create the <code>MovieController</code> Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -214,63 +276,53 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/spring-fruit")
-public class FruitController {
+@RequestMapping(path = "/spring-movie")
+public class MovieController {
 
-    private SpringFruitRepository fruitRepository;
+    private SpringMovieRepository movieRepository;
 
-    public FruitController(SpringFruitRepository fruitRepository) {
-        this.fruitRepository = fruitRepository;
+    public MovieController(SpringMovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
     }
 
     @GetMapping
-    public List&lt;Fruit&gt; fruits(@RequestParam("season") String season) {
-        if (season != null) {
-            return fruitRepository.findBySeason(season);
+    public List&lt;Movie&gt; movies(@RequestParam("year") String year) {
+        if (year != null) {
+            return movieRepository.findByYear(year);
         }
-        return fruitRepository.findAll();
+        return movieRepository.findAll();
     }
 
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s try to filter only the fruits with the <strong>Summer</strong> season:</p>
+<p>Let&#8217;s try to filter only the movies with year <strong>1980</strong>.  Don&#8217;t forget to start Quarkus dev mode again if you stopped it.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/spring-fruit?season=Summer</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/spring-movie?year=1980</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
   {
-    "id": 5,
-    "name": "Blueberry",
-    "season": "Summer"
-  },
-  {
-    "id": 6,
-    "name": "Banana",
-    "season": "Summer"
-  },
-  {
-    "id": 7,
-    "name": "Plum",
-    "season": "Summer"
+    "id": 2,
+    "title": "The Empire Strikes Back",
+    "releaseDate": "1980-05-17"
   }
 ]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You&#8217;ll see that the behavior is the same by the one provided with JAX-RS and Hibernate with Panache.</p>
+<p>You&#8217;ll see that the behavior is the same as the one provided with JAX-RS and Hibernate with Panache.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="panache.html">Hibernate with Panache</a></span>
-  <span class="next"><a href="kubernetes.html">Deploy to Kubernetes</a></span>
+  <span class="prev"><a href="06_dev-services.html">Dev Services</a></span>
+  <span class="next"><a href="08_rest-client.html">REST Client</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

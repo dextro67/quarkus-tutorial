@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Deploying to Kubernetes :: Quarkus Tutorial</title>
+    <link rel="canonical" href="https://redhat-developer-demos.github.io/quarkus-tutorial/quarkus-tutorial/05_kubernetes.html">
+    <link rel="prev" href="04_panache.html">
+    <link rel="next" href="06_dev-services.html">
+    <meta name="generator" content="Antora 2.3.1">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-developer-demos.github.io/quarkus-tutorial">Quarkus Tutorial</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="quarkus-tutorial" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Requirements</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01_setup.html">Setup</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Basics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02_basics.html">Basics and Fundamentals</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03_configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04_panache.html">Hibernate with Panache</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="05_kubernetes.html">Deploy to Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06_dev-services.html">Dev Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07_spring.html">Spring Compatibility</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Native</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08_rest-client.html">REST Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09_fault-tolerance.html">Fault Tolerance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10_health.html">Health Check</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11_observability.html">Observability</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12_security.html">Security with JWT RBAC</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reactive</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14_reactive.html">Reactive with Mutiny</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15_reactive-messaging.html">Streaming reactive messages</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16_kafka-and-streams.html">Apache Kafka with Reactive Streams</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">AI</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_ai_intro.html">AI with Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_prompts.html">Working with prompts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18_chains_memory.html">Chains and Memory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19_agents_tools.html">Agents/Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20_embed_documents.html">Embedding Documents</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21_podman_ai.html">Working with Podman Desktop AI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">quarkus-tutorial</a></li>
+    <li>Basics</li>
+    <li><a href="05_kubernetes.html">Deploy to Kubernetes</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/dextro67/quarkus-tutorial/edit/master/documentation/modules/ROOT/pages/05_kubernetes.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Deploying to Kubernetes</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock text-right mt-4 right">
+<div class="content">
+<a class="image" href="https://developers.redhat.com/developer-sandbox"><img src="_images/openshift_sandbox.png" alt="OpenShift Sandbox" width="250" height="250"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>In this chapter we will push our newly built application to Kubernetes. If you don&#8217;t have a Kubernetes instance at your disposal, you can create a free OpenShift Sandbox instance on <a href="https://developers.redhat.com/developer-sandbox">developers.redhat.com/sandbox</a>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You will need a public container registry to store your image. If you don&#8217;t have an account, we recommend to create a free account at <a href="http://quay.io" class="bare" target="_blank" rel="noopener">http://quay.io</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Our examples will be using the <code>quay.io</code> container registry and the <code>myrepo</code> organization, but you should change it to match your configuration.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_adding_the_kubernetes_and_jib_extensions"><a class="anchor" href="#_adding_the_kubernetes_and_jib_extensions"></a>Adding the Kubernetes and Jib extensions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this chapter we&#8217;ll be using the Quarkus Kubernetes extension to create the Kubernetes deployment file, and the Quarkus Jib Extension to create and push the container image to your container registry without the need of a local Podman/Docker instance.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s add the required extensions:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_maven"></a>Maven</p>
+</li>
+<li>
+<p><a id="tabset1_quarkus-cli"></a>Quarkus CLI</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_maven">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -Dextensions="quarkus-kubernetes,quarkus-container-image-jib"</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_quarkus-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus extension add quarkus-kubernetes quarkus-container-image-jib</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_adding_the_configuration_properties"><a class="anchor" href="#_adding_the_configuration_properties"></a>Adding the configuration properties</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Add the following properties to your <code>application.properties</code> so that you can push the container to the correct location:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># Configuration file
+# key = value
+greeting=Hello y'all!
+quarkus.datasource.jdbc.url=jdbc:h2:mem:default
+quarkus.datasource.db-kind=h2
+quarkus.hibernate-orm.database.generation=drop-and-create
+quarkus.hibernate-orm.sql-load-script=import.sql
+
+quarkus.container-image.registry=quay.io<i class="conum" data-value="1"></i><b>(1)</b>
+quarkus.container-image.group=myrepo<i class="conum" data-value="2"></i><b>(2)</b>
+quarkus.container-image.name=tutorial-app<i class="conum" data-value="3"></i><b>(3)</b>
+quarkus.container-image.tag=1.0-SNAPSHOT<i class="conum" data-value="4"></i><b>(4)</b>
+quarkus.kubernetes.service-type=load-balancer<i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Registry where image is pushed. By default this is Docker Hub.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Group name of the container image.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Container name. By default is the <code>artifactId</code> element of <code>pom.xml</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Tag of the container image. By default is the <code>version</code> element of <code>pom.xml</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Create an external ip for the service.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Change <code>quay.io</code> to your container registry and <code>myrepo</code> to your organization.
+If you don&#8217;t, your push <strong>will</strong> fail.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_authenticating_and_pushing_the_image_to_your_container_registry"><a class="anchor" href="#_authenticating_and_pushing_the_image_to_your_container_registry"></a>Authenticating and pushing the image to your container registry</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to push the container image, you need to authenticate to your container registry:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker login quay.io</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we&#8217;re going to create the artifact, build a container and push it to our registry in one go using Jib.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset2_maven"></a>Maven</p>
+</li>
+<li>
+<p><a id="tabset2_quarkus-cli"></a>Quarkus CLI</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_maven">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:build -DskipTests -D"quarkus.container-image.push=true" -D"quarkus.container-image.builder=jib"</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_quarkus-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus image build jib --no-tests -D"quarkus.container-image.push=true"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you&#8217;re having trouble with Jib, you can also just use Docker/Podman to build and push.  To do so, omit 'jib' from the command.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">[INFO] [io.quarkus.container.image.jib.deployment.JibProcessor] Using base image with digest: sha256:b459cc59d6c7ddc9fd52f981fc4c187f44a401f2433a1b4110810d2dd9e98a07
+[INFO] [io.quarkus.container.image.jib.deployment.JibProcessor] Container entrypoint set to [java, -Dquarkus.http.host=0.0.0.0, -Djava.util.logging.manager=org.jboss.logmanager.LogManager, -cp, /app/resources:/app/classes:/app/libs/*, io.quarkus.runner.GeneratedMain]
+[INFO] [io.quarkus.container.image.jib.deployment.JibProcessor] Pushed container image quay.io/myrepo/tutorial-app:1.0-SNAPSHOT (sha256:6651a2f85f8f53ef951b3398d00f1c7da73bd0e8b21f87584d5a1c0e99aae12c)
+
+[INFO] [io.quarkus.deployment.QuarkusAugmentor] Quarkus augmentation completed in 14804ms
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  20.431 s
+[INFO] Finished at: 2020-05-11T00:05:25-04:00
+[INFO] ------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_the_application_to_your_kubernetes_cluster"><a class="anchor" href="#_deploy_the_application_to_your_kubernetes_cluster"></a>Deploy the application to your Kubernetes cluster</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When a Kubernetes extension is present in the classpath, Quarkus will scaffold a Kubernetes deployment file in your <code>target/</code> folder during the package phase.  We can apply it to deploy the application to our Kubernetes cluster:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You will need the <a href="https://kubernetes.io/docs/tasks/tools/">kubectl</a> or <code>oc</code> cli tool installed locally for the apply command below. <a href="https://developers.redhat.com/blog/2021/04/21/access-your-developer-sandbox-for-red-hat-openshift-from-the-command-line#">Here are instructions</a> to install the <code>oc</code> tool and log in to your OpenShift Sandbox.  Hint: your favorite package manager (dnf/brew/choco) can likely be used for the installation. Eg. <code>dnf install kubectl</code> or <code>choco install kubernetes-client</code> or <code>choco install openshift-client</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset3_kubectl"></a>kubectl</p>
+</li>
+<li>
+<p><a id="tabset3_oc"></a>oc</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset3_kubectl">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f target/kubernetes/kubernetes.yml</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset3_oc">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f target/kubernetes/kubernetes.yml</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">service/tutorial-app created
+deployment.apps/tutorial-app created</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the Quarkus CLI tool, deploying is even easier.  Instead of the above <code>kubectl apply</code> command, you can simply run <code>quarkus deploy</code> to deploy the application to your cluster. If you don&#8217;t have the <code>kubectl</code> or <code>oc</code> CLI installed or are not sure how to log in to your cluster, just add <code>-Dquarkus.kubernetes-client.api-server-url={yourServerUrl} -Dquarkus.kubernetes-client.token={myToken}</code> to the below command.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus deploy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the command has finished, you might need to wait a few more seconds until your application is up and running.  Once it is, let&#8217;s get the url to test.  (command prompt and powershell users will need to tweak these commands a little bit)</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset4_openshift-sandbox-kubernetes-on-aws"></a>OpenShift Sandbox / Kubernetes on AWS</p>
+</li>
+<li>
+<p><a id="tabset4_minikube"></a>Minikube</p>
+</li>
+<li>
+<p><a id="tabset4_hosted"></a>Hosted</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_openshift-sandbox-kubernetes-on-aws">
+<div class="paragraph">
+<p>If using a hosted Kubernetes cluster like OpenShift (Sandbox) on AWS then use <code>curl</code> and the <code>EXTERNAL-IP</code> address with port <code>8080</code> or get it using <code>kubectl</code>:</p>
+</div>
+<div id="{section-k8s}-ip-port-service" class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">IP=$(kubectl get service tutorial-app -o jsonpath="{.status.loadBalancer.ingress[0].hostname}")
+PORT=$(kubectl get service tutorial-app -o jsonpath="{.spec.ports[0].port}")
+echo $IP:$PORT</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset4_minikube">
+<div id="{section-k8s}-ip-port-minikube" class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">IP=$(minikube ip)
+PORT=$(kubectl get service/tutorial-app -o jsonpath="{.spec.ports[*].nodePort}")
+echo $IP:$PORT</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset4_hosted">
+<div class="paragraph">
+<p>If using a hosted Kubernetes cluster like OpenShift then use <code>curl</code> and the <code>EXTERNAL-IP</code> address with port <code>8080</code> or get it using <code>kubectl</code>:</p>
+</div>
+<div id="{section-k8s}-ip-port-openshift" class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">IP=$(kubectl get service tutorial-app -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
+PORT=$(kubectl get service tutorial-app -o jsonpath="{.spec.ports[*].port}")
+echo $IP:$PORT</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Curl the Service:</p>
+</div>
+<div id="{section-k8s}-curl-the-service" class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl $IP:$PORT/hello</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Hello y'all!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you&#8217;re using the OpenShift Sandbox UI, you can also find the application running in the "Topology" view as seen in the screenshot below:</p>
+</div>
+<div class="imageblock text-center mt-4 center">
+<div class="content">
+<img src="_images/Openshift.png" alt="Openshift" width="400" height="400">
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you&#8217;re using OpenShift (Sandbox) and would like to create a url you can share to the outside world, you can create it like so:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc create route edge --service=tutorial-app
+url=$(oc get route tutorial-app -o jsonpath='{.spec.host}')
+curl <a href="https://$url/hello" class="bare">https://$url/hello</a></code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Hello y'all!</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="04_panache.html">Hibernate with Panache</a></span>
+  <span class="next"><a href="06_dev-services.html">Dev Services</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

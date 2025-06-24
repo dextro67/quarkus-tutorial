@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hibernate with Panache :: Quarkus Tutorial</title>
+    <link rel="canonical" href="https://redhat-developer-demos.github.io/quarkus-tutorial/quarkus-tutorial/04_panache.html">
+    <link rel="prev" href="03_configuration.html">
+    <link rel="next" href="05_kubernetes.html">
+    <meta name="generator" content="Antora 2.3.1">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-developer-demos.github.io/quarkus-tutorial">Quarkus Tutorial</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="quarkus-tutorial" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Requirements</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01_setup.html">Setup</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Basics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02_basics.html">Basics and Fundamentals</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03_configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="04_panache.html">Hibernate with Panache</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05_kubernetes.html">Deploy to Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06_dev-services.html">Dev Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07_spring.html">Spring Compatibility</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Native</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08_rest-client.html">REST Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09_fault-tolerance.html">Fault Tolerance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10_health.html">Health Check</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11_observability.html">Observability</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12_security.html">Security with JWT RBAC</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reactive</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14_reactive.html">Reactive with Mutiny</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15_reactive-messaging.html">Streaming reactive messages</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16_kafka-and-streams.html">Apache Kafka with Reactive Streams</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">AI</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_ai_intro.html">AI with Quarkus</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17_prompts.html">Working with prompts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18_chains_memory.html">Chains and Memory</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19_agents_tools.html">Agents/Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20_embed_documents.html">Embedding Documents</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21_podman_ai.html">Working with Podman Desktop AI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">quarkus-tutorial</a></li>
+    <li>Basics</li>
+    <li><a href="04_panache.html">Hibernate with Panache</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/dextro67/quarkus-tutorial/edit/master/documentation/modules/ROOT/pages/04_panache.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Hibernate with Panache</h1>
+<div class="sect1">
+<h2 id="quarkusp-demo-overview"><a class="anchor" href="#quarkusp-demo-overview"></a>Demo Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You&#8217;ll learn how easy and productive Quarkus is with Hibernate with Panache. For this, we&#8217;ll develop a simple CRUD REST API that handles information about movies.</p>
+</div>
+<div class="paragraph">
+<p>We&#8217;ll use <a href="http://www.h2database.com" target="_blank" rel="noopener">H2</a> as our backing database in this section, but it&#8217;s very easy to use other database engines with Quarkus as you will see in the Dev Services chapter. As an exercise for later, we suggest to try your favorite database engine with the documentation found <a href="https://quarkus.io/guides/datasource" target="_blank" rel="noopener">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_adding_extensions"><a class="anchor" href="#_adding_extensions"></a>Adding Extensions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Quarkus provides a lot of optimized dependencies to its ecosystem through <strong>extensions</strong>. For this particular chapter, we&#8217;ll need to add extensions that enables us to work with H2, Hibernate ORM, Panache (a novel persistence API), and JSON.</p>
+</div>
+<div class="paragraph">
+<p>You probably still have <code>./mvnw quarkus:dev</code> running in your terminal. And that&#8217;s perfectly fine!</p>
+</div>
+<div class="paragraph">
+<p>Just open a new terminal window, and make sure you&#8217;re at the root of your <code>tutorial-app</code> project, then run:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_maven"></a>Maven</p>
+</li>
+<li>
+<p><a id="tabset1_quarkus-cli"></a>Quarkus CLI</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_maven">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -Dextension="rest-jackson, jdbc-h2, hibernate-orm-panache, smallrye-openapi"</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_quarkus-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus extension add rest-jackson jdbc-h2 hibernate-orm-panache smallrye-openapi</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">✅ Adding extension io.quarkus:quarkus-rest-jackson
+✅ Adding extension io.quarkus:quarkus-smallrye-openapi
+✅ Adding extension io.quarkus:quarkus-hibernate-orm-panache
+✅ Adding extension io.quarkus:quarkus-jdbc-h2
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.969 s
+[INFO] Finished at: 2020-05-11T21:32:14-04:00
+[INFO] ------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You&#8217;ll notice that by running this command the Quarkus Maven plugin added some dependencies to your <code>pom.xml</code> file. And best of all: Quarkus will autodetect and apply the changes, and you don&#8217;t even need to restart Quarkus!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_adding_database_properties_to_your_configuration"><a class="anchor" href="#_adding_database_properties_to_your_configuration"></a>Adding database properties to your configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Add the following database properties to your <code>application.properties</code> so that it looks like:</p>
+</div>
+<div id="quarkuspdb-update-props" class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-config hljs" data-lang="config"># Configuration file
+# key = value
+greeting=Hello y'all!
+quarkus.datasource.jdbc.url=jdbc:h2:mem:default
+quarkus.datasource.db-kind=h2
+quarkus.hibernate-orm.database.generation=drop-and-create</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+With <a href="#Dev Services">[Dev Services]</a> enabled, no JDBC URL needs to be provided in dev mode. In this case, we input the URL to ensure consistency across all application run modes.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_movie_entity"><a class="anchor" href="#_create_movie_entity"></a>Create Movie Entity</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create a new <code>Movie</code> Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+import java.util.List;
+
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+
+@Entity
+public class Movie extends PanacheEntity {
+
+    public String title;
+
+    @Column(name = "release_date")
+    public java.sql.Date releaseDate;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice that we&#8217;re not providing an <code>@Id</code>, nor we&#8217;re creating the getters and setters. Don&#8217;t worry. It&#8217;s a <strong>Panache</strong> feature. By extending <code>PanacheEntity</code>, we&#8217;re using the <em>Active Record</em> persistence pattern instead of a <em>DAO</em>. This means that all persistence methods are blended with our own <code>Entity</code>.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>What is Panache ?</strong></p>
+</div>
+<div class="paragraph">
+<p>Hibernate ORM is the de facto JPA implementation and offers you the full breadth of an Object Relational Mapper. It makes complex mappings possible, but it does not make simple and common mappings trivial. Hibernate ORM with Panache focuses on making your entities trivial and fun to write in Quarkus.</p>
+</div>
+<div class="paragraph">
+<p>Fore more information please refer to the <a href="https://quarkus.io/guides/hibernate-orm-panache-guide" target="_blank" rel="noopener">Panache Guide</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_movie_resource"><a class="anchor" href="#_create_movie_resource"></a>Create Movie Resource</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create a new <code>MovieResource</code> Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+import java.util.List;
+
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+
+@Path("/movie")
+public class MovieResource {
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List&lt;Movie&gt; movies() {
+        return Movie.listAll();
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we should have everything in place to query our <strong>GET</strong> REST endpoint:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/movie</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">[]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We have an empty JSON array as the response, which is expected, since our database is currently empty.</p>
+</div>
+<div class="sect2">
+<h3 id="_adding_a_post_endpoint"><a class="anchor" href="#_adding_a_post_endpoint"></a>Adding a POST endpoint</h3>
+<div class="paragraph">
+<p>Let&#8217;s change our <code>MovieResource</code> class to also contain a <strong>POST</strong> REST endpoint:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+import java.util.List;
+
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
+
+@Path("/movie")
+public class MovieResource {
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List&lt;Movie&gt; movies() {
+        return Movie.listAll();
+    }
+
+    @Transactional
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response newMovie(Movie movie) {
+        movie.id = null;
+        movie.persist();
+        return Response.status(Status.CREATED).entity(movie).build();
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now you can insert a new movie by using <code>curl</code>:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' -d "{\"title\": \"The Empire Strikes Back\", \"releaseDate\": \"1980-05-17\"}" -H "Content-Type: application/json" http://localhost:8080/movie</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">{"id":1,"title":"The Empire Strikes Back","releaseDate":"1980-05-17"}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now if you refresh your browser pointing to <a href="http://localhost:8080/movie" class="bare" target="_blank" rel="noopener">http://localhost:8080/movie</a>, you should see a response like:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+  {
+    "id": 1,
+    "title": "The Empire Strikes Back",
+    "releaseDate": "1980-05-17"
+  }
+]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_custom_finders"><a class="anchor" href="#_creating_custom_finders"></a>Creating custom finders</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We&#8217;re using H2, which is an in-memory database. This means that every time Quarkus restarts, we&#8217;ll lose all the information we have provided.</p>
+</div>
+<div class="paragraph">
+<p>To provide some meaningful results for our custom finder, let&#8217;s create some initial data to be populated to our database.</p>
+</div>
+<div class="paragraph">
+<p>Create the file <code>import.sql</code> in the folder <code>src/main/resources</code> with the following content:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">INSERT INTO Movie(id,title,release_date) VALUES (1,'A New Hope','1977-05-25');
+INSERT INTO Movie(id,title,release_date) VALUES (2,'The Empire Strikes Back','1980-05-17');
+INSERT INTO Movie(id,title,release_date) VALUES (3,'Return of the Jedi','1983-05-25');
+INSERT INTO Movie(id,title,release_date) VALUES (4,'The Phantom Menace','1999-05-19');
+INSERT INTO Movie(id,title,release_date) VALUES (5,'Attack of the Clones','2002-05-16');
+INSERT INTO Movie(id,title,release_date) VALUES (6,'Revenge of the Sith','2005-05-19');
+ALTER SEQUENCE movie_seq RESTART WITH 7;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And append the following configuration in <code>application.properties</code>:</p>
+</div>
+<div id="quarkuspdb-update-props" class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-config hljs" data-lang="config">quarkus.hibernate-orm.sql-load-script=import.sql</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now if you refresh your browser pointing to <a href="http://localhost:8080/movie" class="bare" target="_blank" rel="noopener">http://localhost:8080/movie</a>, you should see a response like:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+  {
+    "id": 1,
+    "title": "A New Hope",
+    "releaseDate": "1977-05-25"
+  },
+  {
+    "id": 2,
+    "title": "The Empire Strikes Back",
+    "releaseDate": "1980-05-17"
+  },
+  {
+    "id": 3,
+    "title": "Return of the Jedi",
+    "releaseDate": "1983-05-25"
+  },
+  {
+    "id": 4,
+    "title": "The Phantom Menace",
+    "releaseDate": "1999-05-19"
+  },
+  {
+    "id": 5,
+    "title": "Attack of the Clones",
+    "releaseDate": "2002-05-16"
+  },
+  {
+    "id": 6,
+    "title": "Revenge of the Sith",
+    "releaseDate": "2005-05-19"
+  }
+]</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can add different <code>import.sql</code> files based on the application profile.</p>
+</div>
+<div class="paragraph">
+<p>For example: in dev mode, you
+can use the configuration <code>quarkus.hibernate-orm.sql-load-script=import-dev.sql</code>,
+while in production mode you can use <code>quarkus.hibernate-orm.sql-load-script=import-prod.sql</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_adding_a_custom_finder_to_the_movie_entity"><a class="anchor" href="#_adding_a_custom_finder_to_the_movie_entity"></a>Adding a custom finder to the <code>Movie</code> Entity</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Update the <code>Movie</code> class to contain a finder method <code>findByYear</code> like:</p>
+</div>
+<div id="quarkusp-find-movies" class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+import java.util.List;
+
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import jakarta.persistence.Entity;
+
+@Entity
+public class Movie extends PanacheEntity {
+
+    public String title;
+
+    @Column(name = "release_date")
+    public java.sql.Date releaseDate;
+
+    public static List&lt;Movie&gt; findByYear(int year) {
+        return find("YEAR(releaseDate)", year).list();
+    }
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_update_the_get_rest_endpoint_to_use_a_queryparam"><a class="anchor" href="#_update_the_get_rest_endpoint_to_use_a_queryparam"></a>Update the GET REST endpoint to use a QueryParam</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Update the <code>MovieResource</code> class by changing the <code>movies</code> method to use a <code>@QueryParam</code>:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+import java.util.List;
+
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
+
+@Path("/movie")
+public class MovieResource {
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List&lt;Movie&gt; movies(@QueryParam("year") String year) {
+        if (year != null) {
+            return Movie.findByYear(Integer.parseInt(year));
+        }
+        return Movie.listAll();
+    }
+
+    @Transactional
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response newMovie(Movie movie) {
+        movie.id = null;
+        movie.persist();
+        return Response.status(Status.CREATED).entity(movie).build();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s try to filter only the movies from the year <strong>1980</strong>:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/movie?year=1980</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+  {
+    "id": 2,
+    "title": "The Empire Strikes Back",
+    "releaseDate": "1980-05-17"
+  }
+]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_repository_instead_of_activerecord_pattern"><a class="anchor" href="#_using_repository_instead_of_activerecord_pattern"></a>Using Repository instead of ActiveRecord pattern</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Is <code>PanacheEntity</code> too opinionated for you? Maybe you prefer the traditional <strong>Repository</strong> pattern? Don&#8217;t worry: we&#8217;ve got you covered.</p>
+</div>
+<div class="paragraph">
+<p>Panache also helps you to create Repositories.</p>
+</div>
+<div class="paragraph">
+<p>Create the <code>MovieRepository</code> Java class in <code>src/main/java</code> in the <code>com.redhat.developers</code> package with the following contents:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+import java.util.List;
+
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
+public class MovieRepository implements PanacheRepository&lt;Movie&gt; {
+
+    public List&lt;Movie&gt; findByYear(int year) {
+        return find("YEAR(releaseDate)", year).list();
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now you can make another search for movies from a specific year.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_update_movieresource_to_use_movierepository"><a class="anchor" href="#_update_movieresource_to_use_movierepository"></a>Update MovieResource to use MovieRepository</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now let&#8217;s update our <code>MovieResource</code> class to use the <code>MovieRepository</code> we just created:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+
+import java.util.List;
+
+import io.quarkus.logging.Log;
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
+
+@Path("/movie")
+public class MovieResource {
+
+    MovieRepository movieRepository;
+
+    public MovieResource(MovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List&lt;Movie&gt; movies(@QueryParam("year") String year) {
+        if (year != null) {
+            Log.infof("Searching for %s movies", year);
+            return movieRepository.findByYear(Integer.parseInt(year));
+        }
+        return Movie.listAll();
+    }
+
+    @Transactional
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response newMovie(Movie movie) {
+        movie.id = null;
+        movie.persist();
+        return Response.status(Status.CREATED).entity(movie).build();
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s try again to filter only the movies with the year <strong>1980</strong>:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -w '\n' localhost:8080/movie?year=1980</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+  {
+    "id": 2,
+    "title": "The Empire Strikes Back",
+    "releaseDate": "1980-05-17"
+  }
+]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="03_configuration.html">Configuration</a></span>
+  <span class="next"><a href="05_kubernetes.html">Deploy to Kubernetes</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
